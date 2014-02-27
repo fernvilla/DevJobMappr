@@ -1,2 +1,37 @@
-<h1>Maps#index</h1>
-<p>Find me in app/views/maps/index.html.erb</p>
+<style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+     <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBB0sLGR2L5kT8sIFVdYDnLh-ohiw_ZzKk&sensor=true">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+
+        var myLatLng = new google.maps.LatLng(34.05223, -118.24368);
+
+
+        var mapOptions = {
+          center: myLatLng,
+          zoom: 16
+        };
+
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+        
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title:"Hello World!"
+        });
+      }
+      google.maps.event.addDomListener(window, 'page:change', initialize); </script>
+
+
+<body>
+<div id="map-canvas"/>
+<%= yield %>
+
+</body>
