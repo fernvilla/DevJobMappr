@@ -2,21 +2,35 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#map-wrapper {
+html, body {
 	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+#page-wrapper {
+	height: 100%;
+}
+
+#map-wrapper {
+	height: 94%;
 	width: 100%;
 }
 
 #map-canvas { 
 	height: 100%;
 	float: left;
-	width: 760px/960px * 100%;
+	width: 780px/960px * 100%;
 }
 
 #sidebar {
 	float: right;
 	height: 100%;
-	background-color: #000;
-	width: 200px/960px * 100%;
+	background-color: #333333;
+	width: 180px/960px * 100%;
 }
 
+.top-bar {
+	
+}
