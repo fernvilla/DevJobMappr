@@ -30,9 +30,9 @@ describe JobsController do
   end
 
   describe "GET 'edit'" do
-    it "returns http success" do
-      get 'edit'
-      response.should be_success
+    it "allows a job to get updated" do
+        get :edit, {id: job.id}
+        expect(response).to render_template("edit")
     end
   end
 
