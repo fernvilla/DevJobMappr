@@ -50,9 +50,16 @@ GEM
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
+    jquery-modal-rails (0.0.4)
+      jquery-ui-rails
+      railties (>= 3.2.0, < 5.0)
+      thor (~> 0.14)
+      uuidtools
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.2.0)
+      railties (>= 3.2.16)
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -129,6 +136,7 @@ GEM
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uuidtools (2.1.4)
 
 PLATFORMS
   ruby
@@ -139,7 +147,9 @@ DEPENDENCIES
   foundation-rails
   geocoder
   jbuilder (~> 1.2)
+  jquery-modal-rails
   jquery-rails
+  jquery-ui-rails
   pg
   pry
   rails (= 4.0.3)
