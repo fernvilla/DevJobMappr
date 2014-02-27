@@ -11,12 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227004523) do
+ActiveRecord::Schema.define(version: 20140227054904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "maps", force: true do |t|
+  create_table "jobs", force: true do |t|
+    t.string   "job_title"
+    t.text     "job_description"
+    t.string   "experience_level"
+    t.string   "job_type"
+    t.string   "primary_languages"
+    t.string   "secondary_languages"
+    t.string   "job_link"
+    t.string   "company_name"
+    t.string   "company_address"
+    t.string   "company_website"
+    t.string   "industry"
+    t.integer  "company_size"
+    t.integer  "latitude"
+    t.integer  "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
