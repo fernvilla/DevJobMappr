@@ -1,2 +1,97 @@
-<h1>Maps#index</h1>
-<p>Find me in app/views/maps/index.html.erb</p>
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBB0sLGR2L5kT8sIFVdYDnLh-ohiw_ZzKk&sensor=true">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+
+        var myLatLng = new google.maps.LatLng(34.05223, -118.24368);
+
+
+        var mapOptions = {
+          center: myLatLng,
+          zoom: 16
+        };
+
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+        
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title:"Hello World!"
+        });
+      }
+      google.maps.event.addDomListener(window, 'page:change', initialize); 
+ </script>
+
+<div id="page-wrapper">
+	<!-- Navigation -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Top Bar Title
+          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a href="#">Main Item 1</a>
+          <ul class="dropdown">
+            <li><label>Section Name</label></li>
+            <li class="has-dropdown">
+              <a href="#" class="">Has Dropdown, Level 1</a>
+              <ul class="dropdown">
+                <li><a href="#">Dropdown Options</a></li>
+                <li><a href="#">Dropdown Options</a></li>
+                <li><a href="#">Level 2</a></li>
+                <li><a href="#">Subdropdown Option</a></li>
+                <li><a href="#">Subdropdown Option</a></li>
+                <li><a href="#">Subdropdown Option</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li class="divider"></li>
+            <li><label>Section Name</label></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li class="divider"></li>
+            <li><a href="#">See all →</a></li>
+          </ul>
+        </li>
+        <li class="divider"></li>
+        <li><a href="#">Main Item 2</a></li>
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a href="#">Main Item 3</a>
+          <ul class="dropdown">
+            <li><a href="#">Dropdown Option</a></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li class="divider"></li>
+            <li><a href="#">See all →</a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- End Top Bar -->
+
+	<div id="map-wrapper">
+	 <div id="map-canvas"> </div>
+	 <div id= "sidebar"></div>
+	</div>
+</div>
