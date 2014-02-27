@@ -27,7 +27,7 @@ describe Job do
 	  	end
 	  end
 
-	  context 'when job title is missing' do
+	  context 'when job title is blank' do
 	  	it 'is not valid' do
 	  		job = Job.new(@valid_attributes.merge(job_title: ''))
 	  		expect(job).not_to be_valid
@@ -35,7 +35,7 @@ describe Job do
 	  	end
 	  end
 
-	  context 'when job_description is blank' do
+	  context 'when job description is blank' do
 	  	it  'is not valid' do
 	  		job = Job.new(@valid_attributes.merge(job_description: ''))
 	  		expect(job).not_to be_valid
@@ -43,13 +43,101 @@ describe Job do
 	  	end
 	  end	
 
-	  context 'when experience_level is blank' do
+	  context 'when experience level is blank' do
 	  	it 'is not valid' do
 	  		job = Job.new(@valid_attributes.merge(experience_level:''))
 	  		expect(job).not_to be_valid
 	  		expect(job.errors[:experience_level]).to include 'must be present'
 	  	end
 	  end
-	end
-	  
+
+	  context 'when job type is blank' do
+	  	it 'is not valid' do
+	  		job = Job.new(@valid_attributes.merge(job_type: ''))
+	  		expect(job).not_to be_valid
+	  		expect(job.errors[:job_type]).to include 'must be present'
+	  	end
+	  end
+
+	  context 'when primary language(s) is blank' do
+	  	it 'is not valid' do
+	  		job = Job.new(@valid_attributes.merge(primary_languages: ''))
+	  		expect(job).not_to be_valid
+	  		expect(job.errors[:primary_languages]).to include 'must be present'
+	  	end
+	  end
+
+	  context 'when secondary language(s) is blank' do
+	  	it 'is not valid' do
+	  		job = Job.new(@valid_attributes.merge(secondary_languages: ''))
+	  		expect(job).not_to be_valid
+	  		expect(job.errors[:secondary_languages]).to include 'must be present'
+	  	end
+	  end
+
+	  context 'when job link is blank' do
+	  	it 'is not valid' do
+	  		job = Job.new(@valid_attributes.merge(job_link: ''))
+	  		expect(job).not_to be_valid
+	  		expect(job.errors[:job_link]).to include 'must be present'
+	  	end
+	  end
+
+	  context 'when company name is blank' do
+	  	it 'is not valid' do
+	  		job = Job.new(@valid_attributes.merge(company_name: ''))
+	  		expect(job).not_to be_valid
+	  		expect(job.errors[:company_name]).to include 'must be present'
+	  	end
+	  end
+
+	  context 'when company address is blank' do
+	  	it 'is not valid' do
+	  		job = Job.new(@valid_attributes.merge(company_address: ''))
+	  		expect(job).not_to be_valid
+	  		expect(job.errors[:company_address]).to include 'must be present'
+	  	end
+	  end
+
+	  context 'when company website is blank' do
+	  	it 'is not valid' do
+	  		job = Job.new(@valid_attributes.merge(company_website: ''))
+	  		expect(job).not_to be_valid
+	  		expect(job.errors[:company_website]).to include 'must be present'
+	  	end
+	  end
+
+	  context 'when industry is blank' do
+	  	it 'is not valid' do
+		  	job = Job.new(@valid_attributes.merge(industry: ''))
+		  	expect(job).not_to be_valid
+		  	expect(job.errors[:industry]).to include 'must be present'
+		  end
+	  end	
+
+	  context 'when company size is blank' do
+	  	it 'is not valid' do
+	  		job = Job.new(@valid_attributes.merge(company_size: ''))
+	  		expect(job).not_to be_valid
+	  		expect(job.errors[:company_size]).to include 'must be present'
+	  	end
+	  end
+
+		 context 'when latitude is blank' do
+	  	it 'is not valid' do
+	  		job = Job.new(@valid_attributes.merge(latitude: ''))
+				expect(job).not_to be_valid
+				expect(job.errors[:latitude]).to include 'must be present'
+			end
+		end	
+
+		context 'when longitude is blank' do
+		 	it "is not valid" do
+		 		job = Job.new(@valid_attributes.merge(longitude: ''))
+		 		expect(job).not_to be_valid
+		 		expect(job.errors[:longitude]).to include 'must be present'
+		 	end
+		 end 
+
+  end
 end
