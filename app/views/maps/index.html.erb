@@ -2,45 +2,52 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBB0sLGR2L5kT8sIFVdYDnLh-ohiw_ZzKk&sensor=true">
     </script>
     <script type="text/javascript">
- //      function initialize() {
 
- //        var myLatLng = new google.maps.LatLng(34.05223, -118.24368);
-
-
- //        var mapOptions = {
- //          center: myLatLng,
- //          zoom: 16
- //        };
-
- //        var map = new google.maps.Map(document.getElementById("map-canvas"),
- //            mapOptions);
-        
-
- //      var marker = new google.maps.Marker({
- //        position: myLatLng,
- //        map: map,
- //        title:"Hello World!"
- //        });
- //      }
- //      google.maps.event.addDomListener(window, 'page:change', initialize); 
- // </script>
- <script>
   var geocoder;
   var map;
-  function start() {
+  function initialize() {
     geocoder = new google.maps.Geocoder();
     var myLatLng = new google.maps.LatLng(34.05223, -118.24368);
+
     var mapOptions = {
       zoom: 16,
       center: myLatLng
     }
+
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-    var marker = new google.maps.Marker({
+
+    var rails_image = 'assets/rails.png';
+
+    var rails_Marker = new google.maps.Marker({
         position: myLatLng,
         map: map,
-        title:"Hello World!"
-  })};
+        title:"Hello World!",
+        icon: rails_image,
+        animation: google.maps.Animation.BOUNCE
+  });
+
+    var html_image = 'assets/html.png';
+
+    var html_Marker = new google.maps.Marker({
+      position:  new google.maps.LatLng(34.05200, -118.25),
+      map: map,
+      title:"Hello World!",
+      icon: html_image
+
+    });
+
+    var ja_image = 'assets/java.jpg';
+
+    var ja_Marker = new google.maps.Marker({
+      position:  new google.maps.LatLng(34.05200, -118.26),
+      map: map,
+      title:"Hello World!",
+      icon: ja_image
+
+    });
+
+    }
 
   function codeAddress() {
     var address = document.getElementById('address').value;
@@ -57,7 +64,7 @@
     });
   }
 
-  google.maps.event.addDomListener(window, 'page:change', start);
+  google.maps.event.addDomListener(window, 'page:change', initialize);
 
 </script>
 
@@ -71,7 +78,7 @@
       <li class="name">
         <h1>
           <a href="#">
-            Top Bar Title
+            JobMappr
           </a>
         </h1>
       </li>
