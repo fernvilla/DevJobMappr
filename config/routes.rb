@@ -1,4 +1,5 @@
 DevJobMappr::Application.routes.draw do
+  resources :jobs
   get "maps/index"
   get "jobs/index"
   get "jobs/new"
