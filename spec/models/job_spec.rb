@@ -139,5 +139,37 @@ describe Job do
 		 	end
 		 end 
 
+		context 'when latitude contains letters' do
+			it "is not valid" do
+				job = Job.new(@valid_attributes.merge(latitude: 3))
+				expect(job).to be_valid
+
+				jobless = Job.new(@valid_attributes.merge(latitude: "number"))
+				expect(jobless).to_not be_valid
+				expect(jobless.errors[:latitude]).to include 'must be a number'
+			end
+		end
+
+		context 'when longitude contains letters' do
+			it "is not valid" do
+				job = Job.new(@valid_attributes.merge(longitude: 3))
+				expect(job).to be_valid
+
+				jobless = Job.new(@valid_attributes.merge(longitude: "number"))
+				expect(jobless).to_not be_valid
+				expect(jobless.errors[:longitude]).to include 'must be a number'
+			end
+		end
+
+		context 'when company size contains letters' do
+			it "is not valid" do
+				job = Job.new(@valid_attributes.merge(company_size: 100))
+				expect(job).to be_valid
+
+				jobless = Job.new(@valid_attributes.merge(company_size: "one hundred"))
+				expect(jobless).to_not be_valid
+				expect(jobless.errors[:company_size]).to include 'must be a number'
+			end
+		end
   end
 end
