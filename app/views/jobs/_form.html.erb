@@ -1,0 +1,48 @@
+
+<div id="job">
+	<%= form_for @job do |f| %>
+		<%= f.label :job_title %>
+		<%= f.text_field :job_title %>
+
+		<%= f.label :job_description %>
+		<%= f.text_area :job_description %>
+
+		<%= f.label :experience_level %>
+		<%= f.text_field :experience_level %>
+
+		<%= f.label :job_type %>
+		<%= f.text_field :job_type %>
+
+		<%= f.label :primary_languages %>
+		<%= f.text_field :primary_languages %>
+
+		<%= f.label :secondary_languages %>
+		<%= f.text_field :secondary_languages %>
+
+		<%= f.label :job_link %>
+		<%= f.text_field :job_link %>
+
+		<%= f.label :company_name %>
+		<%= f.text_field :company_name %>
+
+		<%= f.label :company_address %>
+		<%= f.text_field :company_address %>
+
+		<%= f.label :company_website %>
+		<%= f.text_field :company_website %>
+
+		<%= f.label :industry %>
+		<%= f.text_field :industry %>
+
+		<%= f.label :company_size %>
+		<%= f.text_field :company_size %>
+
+		<%= f.hidden_field :latitude %>
+		<%= f.hidden_field :latitude %>
+
+		<%= f.hidden_field :longitude %>
+		<%= f.hidden_field :longitude %>
+
+		<%= f.submit :class=>"button tiny" %>
+	<% end %>
+</div>
