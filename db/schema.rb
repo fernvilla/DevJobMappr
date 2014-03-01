@@ -35,4 +35,9 @@ ActiveRecord::Schema.define(version: 20140301004106) do
     t.float    "longitude"
   end
 
+  create_table "maps", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
 end
