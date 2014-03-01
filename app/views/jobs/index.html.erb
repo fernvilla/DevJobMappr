@@ -5,6 +5,7 @@
 <%= job.job_title %>
 <%= job.latitude %>
 <%= job.longitude %>
+<%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 
 <%= link_to_modal 'New Job', new_job_path %>
