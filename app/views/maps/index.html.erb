@@ -17,53 +17,68 @@
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
 
-    var rails_image = 'assets/rails.png';
+  //   var rails_image = 'assets/rails.png';
 
-    var rails_Marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        title:"Hello World!",
-        icon: rails_image,
-        animation: google.maps.Animation.BOUNCE
-  });
+  //   var rails_Marker = new google.maps.Marker({
+  //       position: myLatLng,
+  //       map: map,
+  //       title:"Hello World!",
+  //       icon: rails_image,
+  //       animation: google.maps.Animation.BOUNCE
+  // });
 
-    var html_image = 'assets/html.png';
+    //googlemap api tells me to make contentString to store data.
 
-    var html_Marker = new google.maps.Marker({
-      position:  new google.maps.LatLng(34.05200, -118.25),
-      map: map,
-      title:"Hello World!",
-      icon: html_image
+    // var contentString = '<div id="content'>'</div>';
+    //created new array to store json object
+    var jobs_array = [];
+    // var contentString = '[]';
+    var jobs_attributes= [];
+    //for loop to push array to map. 
+    <% @jobs.each do |j| %>
+      jobs_array.push(new google.maps.LatLng(<%= j.latitude %>, <%= j.longitude %>));
 
-    });
+      // jobs_attributes.push("<%= j.job_title %>", "<%= j.primary_languages %>");
 
-    var ja_image = 'assets/java.jpg';
+      jobs_attributes.push({jobTitle: "<%= j.job_title %>", Lang: "<%= j.primary_languages %>"});
 
-    var ja_Marker = new google.maps.Marker({
-      position:  new google.maps.LatLng(34.05200, -118.26),
-      map: map,
-      title:"Hello World!",
-      icon: ja_image
+    <% end %>
+    //console.log to test front end 
+    console.log(jobs_attributes);
+    console.log(jobs_array);
 
-    });
+    // var infowindow = new google.maps.InfoWindow({
+    //   content: contentString
+    // });
+    //for loop to place each marker with stored information. 
+    var i, newMarker;
+    var infowindow = new google.maps.InfoWindow();
 
-    }
+    for (i=0; i < jobs_array.length; i++) {
+        newMarker = new google.maps.Marker({
+          position: (jobs_array[i]),
+          map: map, 
+          title: (jobs_attributes[i]).to_s
+          });
+          google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
+            return function() {
+              infowindow.setContent(jobs_attributes[i].jobTitle + "<br/>" + jobs_attributes[i].Lang);
+              infowindow.open(map, newMarker);
+            }
+          })(newMarker, i));
+          // (jobs_attributes[i])
+          // icon: html_image
+             newMarker.setVisible(true);
+    };
+    
 
-  function codeAddress() {
-    var address = document.getElementById('address').value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
-  }
+    // }
 
+  // google.maps.event.addListener(marker, 'click', function(){
+  //   infowindow.open(map,marker);
+
+  // });
+ }
   google.maps.event.addDomListener(window, 'page:change', initialize);
 
 </script>
@@ -131,9 +146,7 @@
       </ul>
     </section>
   </nav>
- 
   <!-- End Top Bar -->
-
 	<div id="map-wrapper">
 	 <div id="map-canvas"> </div>
 	 <div id= "sidebar"></div>
