@@ -8,6 +8,7 @@ class JobsController < ApplicationController
     if @job.save
       flash[:notice] = "Your Job Has Been Posted Successfully"
       redirect_to root_path
+      #render "maps/index"
     else 
       flash[:error] =  "Error In Your Submission"
       render action: 'new'
