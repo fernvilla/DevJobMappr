@@ -26,8 +26,8 @@ end
 
       post 'create', { job: { job_title: 'lawyer' } }
 
-      expect(flash[:notice]).to eq 'Yay! your job is saved.'
-      expect(response).to redirect_to jobs_path
+      expect(flash[:notice]).to eq "Your Job Has Been Posted Successfully"
+      expect(response).to redirect_to root_path
       expect(assigns(:job).job_title).to eq 'lawyer'
       expect(assigns(:job)). to be_persisted
     end
@@ -39,7 +39,7 @@ end
 
       post 'create', {job: { job_title: 'lawyer' } } 
 
-      expect(flash[:error]).to eq 'Did not save'
+      expect(flash[:error]).to eq 'Error In Your Submission'
       expect(response).to render_template('new')
     end
   end

@@ -1,4 +1,5 @@
 DevJobMappr::Application.routes.draw do
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks"}
   resources :jobs
   get "maps/index"
   get "jobs/index"

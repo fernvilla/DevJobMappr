@@ -2,11 +2,93 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#job {
-	width: 100%;
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
 	text-align: center;
-	margin: 10px auto;
-	font-size: 10px;
-	border: 1px solid #000;
-	padding: 10px;
+}
+
+#job {
+	width: 325px;
+	height: 620px;
+	text-align: center;
+	padding: 5px;
+	margin: 0 auto;
+
+	input {
+		height: 32px;
+		border-radius: 5px;
+	}
+}
+
+#job * {
+	border-radius: 5px;
+}
+
+.button {
+	color: #FFF;
+	border-radius: 5px;
+	box-shadow: 1px 1px 1px #000;
+}
+
+select {
+	height: 35px;
+	font-size: 13px;
+}
+
+.ui-tooltip, .arrow:after {
+  background: #4c4c4c;
+  border: 1px solid white;
+}
+.ui-tooltip {
+  padding: 10px;
+  color: white;
+  border-radius: 20px;
+  font: bold 12px "Helvetica Neue", Sans-Serif;
+  text-transform: uppercase;
+  box-shadow: 0 0 7px black;
+}
+.arrow {
+  width: 70px;
+  height: 16px;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  margin-left: -35px;
+  bottom: -16px;
+}
+.arrow.top {
+  top: -16px;
+  bottom: auto;
+}
+.arrow.left {
+  left: 20%;
+}
+.arrow:after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: -20px;
+  width: 25px;
+  height: 25px;
+  box-shadow: 6px 5px 9px -9px black;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  tranform: rotate(45deg);
+}
+.arrow.top:after {
+  bottom: -20px;
+  top: auto;
+}
+
+.logo > img{
+  height: 40px;
+  width: 180px;
+  box-shadow: 1px 1px 1px #000;
+}
+
+.alert {
+  color: red;
 }

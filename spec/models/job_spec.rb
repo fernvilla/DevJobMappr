@@ -67,13 +67,13 @@ describe Job do
 	  	end
 	  end
 
-	  context 'when secondary language(s) is blank' do
-	  	it 'is not valid' do
-	  		job = Job.new(@valid_attributes.merge(secondary_languages: ''))
-	  		expect(job).not_to be_valid
-	  		expect(job.errors[:secondary_languages]).to include 'must be present'
-	  	end
-	  end
+	  # context 'when secondary language(s) is blank' do
+	  # 	it 'is not valid' do
+	  # 		job = Job.new(@valid_attributes.merge(secondary_languages: ''))
+	  # 		expect(job).not_to be_valid
+	  # 		expect(job.errors[:secondary_languages]).to include 'must be present'
+	  # 	end
+	  # end
 
 	  context 'when job link is blank' do
 	  	it 'is not valid' do
@@ -99,29 +99,29 @@ describe Job do
 	  	end
 	  end
 
-	  context 'when company website is blank' do
-	  	it 'is not valid' do
-	  		job = Job.new(@valid_attributes.merge(company_website: ''))
-	  		expect(job).not_to be_valid
-	  		expect(job.errors[:company_website]).to include 'must be present'
-	  	end
-	  end
+	  # context 'when company website is blank' do
+	  # 	it 'is not valid' do
+	  # 		job = Job.new(@valid_attributes.merge(company_website: ''))
+	  # 		expect(job).not_to be_valid
+	  # 		expect(job.errors[:company_website]).to include 'must be present'
+	  # 	end
+	  # end
 
-	  context 'when industry is blank' do
-	  	it 'is not valid' do
-		  	job = Job.new(@valid_attributes.merge(industry: ''))
-		  	expect(job).not_to be_valid
-		  	expect(job.errors[:industry]).to include 'must be present'
-		  end
-	  end	
+	  # context 'when industry is blank' do
+	  # 	it 'is not valid' do
+		 #  	job = Job.new(@valid_attributes.merge(industry: ''))
+		 #  	expect(job).not_to be_valid
+		 #  	expect(job.errors[:industry]).to include 'must be present'
+		 #  end
+	  # end	
 
-	  context 'when company size is blank' do
-	  	it 'is not valid' do
-	  		job = Job.new(@valid_attributes.merge(company_size: ''))
-	  		expect(job).not_to be_valid
-	  		expect(job.errors[:company_size]).to include 'must be present'
-	  	end
-	  end
+	  # context 'when company size is blank' do
+	  # 	it 'is not valid' do
+	  # 		job = Job.new(@valid_attributes.merge(company_size: ''))
+	  # 		expect(job).not_to be_valid
+	  # 		expect(job.errors[:company_size]).to include 'must be present'
+	  # 	end
+	  # end
 
 		 context 'when latitude is blank' do
 	  	it 'is not valid' do
@@ -161,15 +161,15 @@ describe Job do
 			end
 		end
 
-		context 'when company size contains letters' do
-			it "is not valid" do
-				job = Job.new(@valid_attributes.merge(company_size: 100))
-				expect(job).to be_valid
+		# context 'when company size contains letters' do
+		# 	it "is not valid" do
+		# 		job = Job.new(@valid_attributes.merge(company_size: 100))
+		# 		expect(job).to be_valid
 
-				jobless = Job.new(@valid_attributes.merge(company_size: "one hundred"))
-				expect(jobless).to_not be_valid
-				expect(jobless.errors[:company_size]).to include 'must be a number'
-			end
-		end
+		# 		jobless = Job.new(@valid_attributes.merge(company_size: "one hundred"))
+		# 		expect(jobless).to_not be_valid
+		# 		expect(jobless.errors[:company_size]).to include 'must be a number'
+		# 	end
+		# end
   end
 end

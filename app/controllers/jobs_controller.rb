@@ -15,15 +15,30 @@ class JobsController < ApplicationController
   end
 
   def new
-    @job = Job.new 
+    if current_user
+      @job = Job.new 
+    else
+      redirect_to new_user_session_path
+      flash[:alert] = "Please sign in first"
+    end
   end
 
   def show
-    @job = Job.find(params[:id])
+    if current_user
+      @job = Job.find(params[:id])
+    else
+      redirect_to new_user_session_path
+      flash[:alert] = "Please sign in first"
+    end
   end
 
   def edit
-    @job = Job.find(params[:id])
+    if current_user
+      @job = Job.find(params[:id])
+    else
+      redirect_to new_user_session_path
+      flash[:alert] = "Please sign in first"
+    end
   end
 
   def update
@@ -45,6 +60,6 @@ class JobsController < ApplicationController
 
   private
     def jobs_params
-      params.require(:job).permit(:job_title, :job_description, :experience_level, :job_type, :primary_languages, :secondary_languages, :job_link, :company_name, :company_address, :company_website, :industry, :company_size, :latitude, :longitude)
+      params.require(:job).permit(:job_title, :job_description, :experience_level, :job_type, :primary_languages, :job_link, :company_name, :company_address, :latitude, :longitude)
     end 
 end

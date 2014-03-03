@@ -15,6 +15,7 @@
 //= require jquery.ui.all
 //= require jquery.modal
 //= require foundation
+//= require d3
 //= require turbolinks
 //= require_tree .
 

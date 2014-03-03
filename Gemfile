@@ -3,6 +3,15 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
+# D3 data visualization
+gem 'd3_rails'
+
+# Authentication
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-linkedin'
+gem 'omniauth-twitter' 
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 

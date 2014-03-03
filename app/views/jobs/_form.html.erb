@@ -1,41 +1,49 @@
+<!-- JQuery for form tooltips -->
+<script>
+	$(function() {
+	  $( document ).tooltip({
+	    track: true
+	  });
+	});
+</script>
 
 <div id="job">
 	<%= form_for @job do |f| %>
+		<% if @job.errors.any? %>
+			<div id="error_explanation">
+			<h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+			<ul>
+			<% @job.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+			</div>
+		<% end %>
+
 		<%= f.label :job_title %>
-		<%= f.text_field :job_title %>
+		<%= f.text_field :job_title, :required=>true, :title=>"Enter the position's job title" %>
 
 		<%= f.label :job_description %>
-		<%= f.text_area :job_description %>
-
-		<%= f.label :experience_level %>
-		<%= f.text_field :experience_level %>
+		<%= f.text_area :job_description, :required=>true, :title=>"Enter a quick description of the position" %>
 
 		<%= f.label :job_type %>
-		<%= f.text_field :job_type %>
+		<%= f.select :job_type, options_for_select(["Front-End", "Back-End", "Full-Stack"]), :title=>"Selct a job type"%>
 
-		<%= f.label :primary_languages %>
-		<%= f.text_field :primary_languages %>
+		<%= f.label :experience_level %>
+		<%= f.select :experience_level, options_for_select(["Senior", "Junior", "Internship"]), :title=>"Select experience level for this position" %>
 
-		<%= f.label :secondary_languages %>
-		<%= f.text_field :secondary_languages %>
+		<%= f.label "Programming Language(s)" %>
+		<%= f.text_field :primary_languages, :required=>true, :title=>"Enter primary language(s) required for this position" %>
 
 		<%= f.label :job_link %>
-		<%= f.text_field :job_link %>
+		<%= f.text_field :job_link, :required=>true, :title=>"Enter a link to for candidate to apply at" %>
 
 		<%= f.label :company_name %>
-		<%= f.text_field :company_name %>
+		<%= f.text_field :company_name, :required=>true, :title=>"Enter the name of your company" %>
 
 		<%= f.label :company_address %>
-		<%= f.text_field :company_address %>
-
-		<%= f.label :company_website %>
-		<%= f.text_field :company_website %>
-
-		<%= f.label :industry %>
-		<%= f.text_field :industry %>
-
-		<%= f.label :company_size %>
-		<%= f.text_field :company_size %>
+		<%= f.text_field :company_address, :required=>true, :title=>"Enter your company's full address to be mapped properly" %>
 
 		<%= f.hidden_field :latitude %>
 		<%= f.hidden_field :latitude %>
