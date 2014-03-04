@@ -32,6 +32,6 @@ html, body {
 	width: 160px/960px * 100%;
 }
 
-.top-bar {
-
-}
+#map-canvas img{ 
+	max-width: none;
+	}
