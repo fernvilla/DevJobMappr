@@ -1,14 +1,19 @@
 class JobsController < ApplicationController
   def index
-    @jobs = Job.all
+    if current_user
+      @jobs = current_user.jobs
+    else
+      redirect_to new_user_session_path
+      flash[:alert] = "Please sign in first"
+    end
   end
 
   def create
     @job = Job.new(jobs_params)
+    @job.user = current_user
     if @job.save
       flash[:notice] = "Your Job Has Been Posted Successfully"
       redirect_to root_path
-      #render "maps/index"
     else 
       flash[:error] =  "Error In Your Submission"
       render action: 'new'
@@ -44,9 +49,9 @@ class JobsController < ApplicationController
 
   def update
     @job = Job.find(params[:id])
-    if @job.update(workout_params)
+    if @job.update(jobs_params)
       flash[:notice] = "Successfully Updated Your Job"
-      redirect_to root_path
+      redirect_to jobs_path
     else
       render action 'edit'
     end

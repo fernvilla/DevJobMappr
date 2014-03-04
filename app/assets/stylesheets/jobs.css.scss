@@ -2,10 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
-
 body {
 	text-align: center;
+}
+
+table {
+  margin: 0 auto;
+  text-align: left;
 }
 
 #job {
@@ -28,7 +31,6 @@ body {
 .button {
 	color: #FFF;
 	border-radius: 5px;
-	box-shadow: 1px 1px 1px #000;
 }
 
 select {
@@ -91,4 +93,18 @@ select {
 
 .alert {
   color: red;
+}
+
+.notice {
+  color: green;
+}
+
+.form {
+  margin: 20px auto;
+  padding: 5px;
+  width: 450px;
+  height: 650px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px #000;
 }
