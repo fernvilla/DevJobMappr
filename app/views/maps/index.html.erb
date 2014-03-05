@@ -15,13 +15,12 @@
       center: myLatLng
     }
 
-    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-    
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); 
  
  }
   google.maps.event.addDomListener(window, 'page:change', initialize);
 
+  // create a function that takes in argument 'x' from the click of the button and call is made through the GET and then after it gets a response it runs on mapMaker on line 31. 
   function searchMap(x) {
     $.ajax ({
       type:"GET", 
@@ -30,6 +29,7 @@
       mapMaker(msg);
     });
   }
+  //this is a function mapMaker that takes the JSON and then plots the map. 
   function mapMaker(jobs_array){
      console.log(jobs_array);
 
