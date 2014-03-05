@@ -5,7 +5,7 @@
 
   var geocoder;
   var map;
-  var last_marker;
+  // var last_marker;
   function initialize() {
     geocoder = new google.maps.Geocoder();
     var myLatLng = new google.maps.LatLng(33.97545, -118.3473);
@@ -17,40 +17,28 @@
 
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-
-  //   var rails_image = 'assets/rails.png';
-
-  //   var rails_Marker = new google.maps.Marker({
-  //       position: myLatLng,
-  //       map: map,
-  //       title:"Hello World!",
-  //       icon: rails_image,
-  //       animation: google.maps.Animation.BOUNCE
-  // });
-
-    //googlemap api tells me to make contentString to store data.
-
-    // var contentString = '<div id="content'>'</div>';
     //created new array to store json object
     var jobs_array = [];
-    // var contentString = '[]';
-    var jobs_attributes= [];
+    var jobs_attributes = [];
+    var job_front_end = [];
+    var job_back_end = [];
+    var job_full_stack = [];
     //for loop to push array to map. 
     <% @jobs.each do |j| %>
       jobs_array.push(new google.maps.LatLng(<%= j.latitude %>, <%= j.longitude %>));
 
-      // jobs_attributes.push("<%= j.job_title %>", "<%= j.primary_languages %>");
+      jobs_attributes.push({jobTitle: "<%= j.job_title %>", Lang: "<%= j.primary_languages %>", Type: "<%= j.job_type %>"});
 
-      jobs_attributes.push({jobTitle: "<%= j.job_title %>", Lang: "<%= j.primary_languages %>"});
-
+      //creating an if statement to capture one type of job_title so that it knows how to respond.
+      // if (<%#= j.job_type %> = "Front-End") {
+      //   //save to job_front_end array
+      //   j.job_type.push(job_front_end)
+      // }
     <% end %>
     //console.log to test front end 
     console.log(jobs_attributes);
     console.log(jobs_array);
 
-    // var infowindow = new google.maps.InfoWindow({
-    //   content: contentString
-    // });
     //for loop to place each marker with stored information. 
     var i, newMarker;
     var infowindow = new google.maps.InfoWindow();
@@ -61,38 +49,14 @@
           map: map, 
           title: (jobs_attributes[i]).to_s
           });
-          google.maps.event.addListener(newMarker, 'click', toggleBounce, (function(newMarker, i) {
+          google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
             return function() {
-              infowindow.setContent(jobs_attributes[i].jobTitle + "<br/>" + jobs_attributes[i].Lang);
+              infowindow.setContent(jobs_attributes[i].jobTitle + "<br/>" + jobs_attributes[i].Lang + "<br/>" + jobs_attributes[i].Type)
               infowindow.open(map, newMarker);
             }
           })(newMarker, i));   
-      
-      function toggleBounce() { 
-        if (newMarker.getAnimation() != null) {
-          newMarker.setAnimation(null);
-        } 
-        else {
-     
-          newMarker.setAnimation(google.maps.Animation.BOUNCE);
-        
-        }
-    
-      }
-
-
-          // (jobs_attributes[i])
-          // icon: html_image
-             newMarker.setVisible(true);
+          newMarker.setVisible(true);
     };
-    
-
-    // }
-
-  // google.maps.event.addListener(marker, 'click', function(){
-  //   infowindow.open(map,marker);
-
-  // });
  }
   google.maps.event.addDomListener(window, 'page:change', initialize);
 
@@ -164,6 +128,15 @@
   <!-- End Top Bar -->
 	<div id="map-wrapper">
 	 <div id="map-canvas"> </div>
+   <form action="#">
+    
+      <%= link_to "Front End", maps_index_path(category:"Front-End") %>
+    <br />
+      <%= link_to "Back End", maps_index_path(category:"Back-End") %>
+    <br />
+      <%= link_to "Full Stack", maps_index_path(category:"Full-Stack") %>
+    <br />
+   </form>
 	 <div id= "sidebar"></div>
 	</div>
 </div>

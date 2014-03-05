@@ -33,8 +33,8 @@ end
     end
   end
 
-  context 'when athlete is not valid' do
-    it 'does not save the athlete' do
+  context 'when job is not valid' do
+    it 'does not save the job' do
       Job.any_instance.stub(:valid?).and_return(false)
 
       post 'create', {job: { job_title: 'lawyer' } } 
