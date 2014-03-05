@@ -128,8 +128,9 @@
   <!-- End Top Bar -->
 	<div id="map-wrapper">
 	 <div id="map-canvas"> </div>
-   <form action="#">
-    
+   <form action="#" style="text-align: center; margin: 5px;">
+      <%= link_to "All Jobs", maps_index_path %>
+    <br /> 
       <%= link_to "Front End", maps_index_path(category:"Front-End") %>
     <br />
       <%= link_to "Back End", maps_index_path(category:"Back-End") %>
