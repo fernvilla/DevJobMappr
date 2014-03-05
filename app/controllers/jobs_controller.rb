@@ -1,5 +1,4 @@
 class JobsController < ApplicationController
-  before_action :login_required, only: :index
   def index
     if current_user
       @jobs = current_user.jobs
@@ -14,7 +13,7 @@ class JobsController < ApplicationController
     @job.user = current_user
     if @job.save
       flash[:notice] = "Your Job Has Been Posted Successfully"
-      redirect_to root_path
+      redirect_to jobs_path
     else 
       flash[:error] =  "Error In Your Submission"
       render action: 'new'
@@ -62,7 +61,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @job.destroy
     flash[:notice] = "Successfully Deleted Your Job"
-    redirect_to root_path
+    redirect_to jobs_path
   end
 
   private

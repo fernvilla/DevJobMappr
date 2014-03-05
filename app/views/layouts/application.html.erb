@@ -12,7 +12,40 @@
   </head>
 
   <body>
+      <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Title Area -->
+      <div class="app">
+            JobMappr
+      </div>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ <section class="top-bar-section">
+<%= link_to_modal 'New Job', new_job_path, :class=>"button left job" %> 
+<% if user_signed_in? %>
+<ul class="right">
+    <li class="has-dropdown">
+        <a href="">
+Hi <%= current_user.email %></a>
+        <ul class="dropdown">
+          <li> <%= link_to "Dashboard", jobs_path, :class=>"button right" %>
+            
+          </li>
+          <li> <%= link_to "Sign Out", destroy_user_session_path,:method => :delete, :class=>"button right" %>
+</li>
+        </ul>
+      </li>
+    </ul>
 
+<% else %>
+<%= link_to_modal "Sign Up", new_user_registration_path, :class=>"button right" %> 
+<%= link_to_modal "Sign In", new_user_session_path, :class=>"button right" %>
+
+
+
+<% end %>
+</section>
+</nav>
     <%= yield %>
     <%= javascript_include_tag "application" %>
   </body>

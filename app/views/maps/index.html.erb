@@ -64,71 +64,12 @@
 
 
 <div id="page-wrapper">
-	<!-- Navigation -->
- 
-  <nav class="top-bar" data-topbar>
-    <ul class="title-area">
-      <!-- Title Area -->
-      <li class="name">
-        <h1>
-          <a href="#">
-            JobMappr
-          </a>
-        </h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-    </ul>
- 
-    <section class="top-bar-section">
-      <!-- Right Nav Section -->
-      <ul class="right">
-        <li class="divider"></li>
-        <li class="has-dropdown">
-          <a href="#">Main Item 1</a>
-          <ul class="dropdown">
-            <li><label>Section Name</label></li>
-            <li class="has-dropdown">
-              <a href="#" class="">Has Dropdown, Level 1</a>
-              <ul class="dropdown">
-                <li><a href="#">Dropdown Options</a></li>
-                <li><a href="#">Dropdown Options</a></li>
-                <li><a href="#">Level 2</a></li>
-                <li><a href="#">Subdropdown Option</a></li>
-                <li><a href="#">Subdropdown Option</a></li>
-                <li><a href="#">Subdropdown Option</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li class="divider"></li>
-            <li><label>Section Name</label></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li class="divider"></li>
-            <li><a href="#">See all →</a></li>
-          </ul>
-        </li>
-        <li class="divider"></li>
-        <li><a href="#">Main Item 2</a></li>
-        <li class="divider"></li>
-        <li class="has-dropdown">
-          <a href="#">Main Item 3</a>
-          <ul class="dropdown">
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li class="divider"></li>
-            <li><a href="#">See all →</a></li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-  </nav>
-  <!-- End Top Bar -->
+
 	<div id="map-wrapper">
 	 <div id="map-canvas"> </div>
-   <form action="#" style="text-align: center; margin: 5px;">
+   
+	 <div id= "sidebar">
+    <form action="#" style="text-align: center; margin: 5px;">
       <%= link_to "All Jobs", maps_index_path %>
     <br /> 
       <%= link_to "Front End", maps_index_path(category:"Front-End") %>
@@ -137,7 +78,7 @@
     <br />
       <%= link_to "Full Stack", maps_index_path(category:"Full-Stack") %>
     <br />
-   </form>
-	 <div id= "sidebar"></div>
+   </form> 
+   </div>
 	</div>
 </div>

@@ -1,4 +1,4 @@
-<h3>Dashboard</h3>
+<h3 id="dash">Dashboard</h3>
 <h5>You have a total of <%= current_user.jobs.length %> job(s) currently posted</h5>
 
 <p class="notice"><%= notice %></p>
@@ -29,16 +29,6 @@
   </tbody>
 </table>
 <br>
-<%= link_to_modal 'Add New Job', new_job_path, :class=>"button tiny" %>
-<br>
 <%= link_to "Back to main", root_path %>
 <br>
 <br>
-
-<% if user_signed_in? %>
-	Signed in as <%= current_user.email %>. Not you?
-	<%= link_to "Sign Out", destroy_user_session_path,:method => :delete %>
-	<% else %>
-	<%= link_to_modal "Sign Up", new_user_registration_path %> or
-	<%= link_to_modal "Sign In", new_user_session_path %>
-<% end %>
