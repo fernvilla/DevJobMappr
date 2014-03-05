@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+  before_action :login_required, only: :index
   def index
     if current_user
       @jobs = current_user.jobs

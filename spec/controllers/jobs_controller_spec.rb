@@ -8,14 +8,30 @@ describe JobsController do
     sign_in current_user
   end
 
+
+
+#testing for current_user
   describe "GET 'index'" do
-    it "returns http success" do
-      # Job.stub(:all).and_return('an array of jobs')
-      get 'index'
-      response.should be_success
-      # expect(assigns(:jobs)).to eq 'an array of jobs'
-    end
+    #before each test, that i want the controller to return current user for that test. and it should return Factory Girl.
+      #to test current_user you have to use controller.stub to test return value
+      context'when somebody is logged in' do
+        it "returns http success" do
+          get "index"
+          expect(response).to be_success
+          expect(response.status).to eq 200
+        end
+      end 
+      context 'when someone is not logged in' do
+        it 'redirect to the homepage and sets a flash alert' do 
+          #the get find a new action and lighting it up.
+          get "new"
+          expect(response.status).to eq 200
+        end 
+      end
   end
+
+
+
 
 describe "POST 'create'" do
   before :all do
