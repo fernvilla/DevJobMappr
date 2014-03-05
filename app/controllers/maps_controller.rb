@@ -1,14 +1,14 @@
 class MapsController < ApplicationController
   def index
     @maps = Map.all
-      if params[:category]== "Front-End"
-        @jobs = Job.where(job_type:"Front-End")
-      elsif params[:category]== "Back-End"
-        @jobs = Job.where(job_type:"Back-End")
-      elsif params[:category]== "Full-Stack"
-        @jobs = Job.where(job_type:"Full-Stack")
+  end
+    def jobs_search 
+     if params[:category]
+        @jobs = Job.where(job_type: params[:category])
       else
         @jobs = Job.all 
       end
-  end
+        render json: @jobs
+    end
+
 end

@@ -2,6 +2,7 @@ DevJobMappr::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks"}
   resources :jobs
   get "maps/index"
+  get "maps/jobs_search" => 'maps#jobs_search', as: :map_jobs_search
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

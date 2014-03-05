@@ -17,27 +17,21 @@
 
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-    //created new array to store json object
-    var jobs_array = [];
-    var jobs_attributes = [];
-    var job_front_end = [];
-    var job_back_end = [];
-    var job_full_stack = [];
-    //for loop to push array to map. 
-    <% @jobs.each do |j| %>
-      jobs_array.push(new google.maps.LatLng(<%= j.latitude %>, <%= j.longitude %>));
+    
+ 
+ }
+  google.maps.event.addDomListener(window, 'page:change', initialize);
 
-      jobs_attributes.push({jobTitle: "<%= j.job_title %>", Lang: "<%= j.primary_languages %>", Type: "<%= j.job_type %>"});
-
-      //creating an if statement to capture one type of job_title so that it knows how to respond.
-      // if (<%#= j.job_type %> = "Front-End") {
-      //   //save to job_front_end array
-      //   j.job_type.push(job_front_end)
-      // }
-    <% end %>
-    //console.log to test front end 
-    console.log(jobs_attributes);
-    console.log(jobs_array);
+  function searchMap(x) {
+    $.ajax ({
+      type:"GET", 
+      url: "<%= map_jobs_search_path %>?category="+x,
+    }).done(function(msg){
+      mapMaker(msg);
+    });
+  }
+  function mapMaker(jobs_array){
+     console.log(jobs_array);
 
     //for loop to place each marker with stored information. 
     var i, newMarker;
@@ -45,21 +39,19 @@
 
     for (i=0; i < jobs_array.length; i++) {
         newMarker = new google.maps.Marker({
-          position: (jobs_array[i]),
+          position: new google.maps.LatLng(jobs_array[i].latitude, jobs_array[i].longitude),
           map: map, 
-          title: (jobs_attributes[i]).to_s
+          title: (jobs_array[i].job_title)
           });
           google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
             return function() {
-              infowindow.setContent(jobs_attributes[i].jobTitle + "<br/>" + jobs_attributes[i].Lang + "<br/>" + jobs_attributes[i].Type)
+              infowindow.setContent(jobs_array[i].job_title + "<br/>" + jobs_array[i].company_name + "<br/>" + jobs_array[i].primary_languages);
               infowindow.open(map, newMarker);
             }
           })(newMarker, i));   
           newMarker.setVisible(true);
     };
- }
-  google.maps.event.addDomListener(window, 'page:change', initialize);
-
+  }
 </script>
 
 
@@ -70,13 +62,13 @@
    
 	 <div id= "sidebar">
     <form action="#" style="text-align: center; margin: 5px;">
-      <%= link_to "All Jobs", maps_index_path %>
+       <input type= "button" value = "All Jobs" onclick= "searchMap('')"> 
     <br /> 
-      <%= link_to "Front End", maps_index_path(category:"Front-End") %>
+      <input type= "button" value = "Front End" onclick= "searchMap('Front-End')"> 
     <br />
-      <%= link_to "Back End", maps_index_path(category:"Back-End") %>
+      <input type= "button" value = "Back End" onclick= "searchMap('Back-End')"> 
     <br />
-      <%= link_to "Full Stack", maps_index_path(category:"Full-Stack") %>
+      <input type= "button" value = "Full Stack" onclick= "searchMap('Full-Stack')"> 
     <br />
    </form> 
    </div>
