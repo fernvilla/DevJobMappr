@@ -21,7 +21,7 @@
       <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
     </ul>
  <section class="top-bar-section">
-<%= link_to_modal 'New Job', new_job_path, :class=>"button left job" %> 
+<%= link_to_modal 'New Job', new_job_path, :class=>"button [radius round] left job" %> 
 <% if user_signed_in? %>
 <ul class="right">
     <li class="has-dropdown">
@@ -38,15 +38,16 @@ Hi <%= current_user.email %></a>
     </ul>
 
 <% else %>
-<%= link_to_modal "Sign Up", new_user_registration_path, :class=>"button right" %> 
-<%= link_to_modal "Sign In", new_user_session_path, :class=>"button right" %>
+<div class="signup"><%= link_to_modal "Sign Up", new_user_registration_path %></div>
+<div class="signin"><%= link_to_modal "Sign In", new_user_session_path %></div>
 
 
 
 <% end %>
 </section>
 </nav>
-    <%= yield %>
     <%= javascript_include_tag "application" %>
+
+    <%= yield %>
   </body>
 </html>

@@ -3,35 +3,83 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
 html, body {
-	height: 100%;
-	width: 100%;
-	padding: 0;
-	margin: 0;
+     height: 100%;
+     width: 100%;
+     padding: 0;
+     margin: 0;
 }
 
 #page-wrapper {
-	height: 100%;
+     height: 100%;
 }
 
 #map-wrapper {
-	height: 94%;
-	width: 100%;
+     height: 100%;
+     width: 100%;
 }
 
-#map-canvas { 
-	height: 100%;
-	float: left;
-	width: 800px/960px * 100%;
+#map-canvas {
+     height: 100%;
+     float: left;
+     width: 800px/960px * 100%;
 }
 
 #sidebar {
-	float: right;
-	height: 100%;
-	background-color: #333333;
-	width: 160px/960px * 100%;
+     float: right;
+     height: 100%;
+     background-color: #333333;
+     width: 160px/960px * 100%;
 }
 
-#map-canvas img{ 
-	max-width: none;
-	}
+
+/*.newbutton {
+     margin: 0 auto;
+     margin-bottom: 60px;
+     z-index: 999;
+     padding-top: 30px;
+}*/
+
+/*.button {
+     color: red;
+     background-color: black;
+
+}*/
+
+#map-canvas img {
+     max-width: none;
+}
+
+.app {
+     font-size: 30px;
+     font-weight: bold;
+     color: #CF4858;
+     padding-top: 7px;
+     padding-left: 10px;
+     margin-left: 20px;
+
+}
+
+.top-bar {
+    height: 70px; 
+    
+}
+
+
+.job {
+margin-left: 50px;
+height: 50px;
+line-height : 30px;
+background-color: #385B9F;
+}
+
+
+.btn-job:hover {
+	background-color: #168A8F;
+}
+
+.signin {
+margin-left: 1000px;
+margin-bottom: 80px;
+}
