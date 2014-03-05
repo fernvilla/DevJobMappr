@@ -58,13 +58,20 @@ html, body {
      padding-top: 7px;
      padding-left: 10px;
      margin-left: 20px;
+     font-family: 'Kreon', serif;
 
 }
 
 .top-bar {
-    height: 70px; 
-    
+    height: 70px;
+/*     background: none;
+*//*    height: 58px;
+*/    line-height: 58px;
+    margin-bottom: 0;
+    font-family: 'Kreon', serif;
 }
+  
+    
 
 
 .job {
@@ -79,7 +86,9 @@ background-color: #385B9F;
 	background-color: #168A8F;
 }
 
-.signin {
-margin-left: 1000px;
+.signup {
+margin-left: 1300px;
 margin-bottom: 80px;
+padding: 30px;
+margin: 40px;
 }
