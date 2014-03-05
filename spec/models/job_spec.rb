@@ -11,12 +11,12 @@ describe Job do
 			secondary_languages: 'Html',
 			job_link: 'www.job.com',
 			company_name: 'Danon',
-			company_address: '123 Dan st.',
+			company_address: '1504 2nd st, Santa Monica, CA 90401',
 			company_website: 'www.danon.com',
 			industry: 'Party industry',
 			company_size: 100,
-			latitude: 123123123213,
-			longitude: 1231231245
+			latitude:  34.0134672,
+			longitude: -118.4954042
 		}
 	end 
 
@@ -141,7 +141,7 @@ describe Job do
 
 		context 'when latitude contains letters' do
 			it "is not valid" do
-				job = Job.new(@valid_attributes.merge(latitude: 3))
+				job = Job.new(@valid_attributes.merge(latitude: 3.3))
 				expect(job).to be_valid
 
 				jobless = Job.new(@valid_attributes.merge(latitude: "number"))
@@ -152,7 +152,7 @@ describe Job do
 
 		context 'when longitude contains letters' do
 			it "is not valid" do
-				job = Job.new(@valid_attributes.merge(longitude: 3))
+				job = Job.new(@valid_attributes.merge(longitude: 3.4))
 				expect(job).to be_valid
 
 				jobless = Job.new(@valid_attributes.merge(longitude: "number"))

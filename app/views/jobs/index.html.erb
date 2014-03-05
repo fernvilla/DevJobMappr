@@ -22,7 +22,7 @@
 	      <td><%= job.job_description %></td>
 	      <td><%= job.job_type %></td>
 	      <td><%= job.experience_level %></td>
-	      <td><%= job.created_at.strftime("%d/%m/%Y") %></td>
+	      <td><%= job.created_at.strftime("%m/%d/%Y") %></td>
 	      <td><%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' } %>/<%= link_to_modal "Edit", edit_job_path(job)%></td>
 	    </tr>
     <% end %>
@@ -30,6 +30,9 @@
 </table>
 <br>
 <%= link_to_modal 'Add New Job', new_job_path, :class=>"button tiny" %>
+<br>
+<%= link_to "Back to main", root_path %>
+<br>
 <br>
 
 <% if user_signed_in? %>
