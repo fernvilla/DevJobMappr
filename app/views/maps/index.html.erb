@@ -38,6 +38,15 @@
     });
   }
 
+   function jobSearchMap(x) {
+    $.ajax ({
+      type:"GET", 
+      url: "<%= map_experience_search_path %>?category="+x,
+    }).done(function(msg){
+      mapMaker(msg);
+    });
+  }
+
   //this is a function mapMaker that takes the JSON and then plots the map. 
   function mapMaker(jobs_array){
      console.log(jobs_array);
@@ -55,7 +64,7 @@
         });
         google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
           return function() {
-            infowindow.setContent(jobs_array[i].job_title + "<br/>" + jobs_array[i].company_name + "<br/>" + jobs_array[i].primary_languages);
+            infowindow.setContent(jobs_array[i].job_title + "<br/>" + jobs_array[i].company_name + "<br/>" + jobs_array[i].primary_languages, + "<br/>"+jobs_array[i].experience_level);
             infowindow.open(map, newMarker);
           }
         })(newMarker, i));   
@@ -86,14 +95,22 @@ google.maps.event.addDomListener(window, 'page:change', initialize);
 	 <div id= "sidebar">
     <form action="#" style="text-align: center; margin: 5px;">
       <input type= "button" value = "All Jobs" onclick= "searchMap('')"> 
-      <br>
+      <br/>
       <input type= "button" value = "Front End" onclick= "searchMap('Front-End')"> 
-      <br>
+      <br/>
       <input type= "button" value = "Back End" onclick= "searchMap('Back-End')"> 
-      <br>
+      <br/>
       <input type= "button" value = "Full Stack" onclick= "searchMap('Full-Stack')"> 
-      <br>
+      <br/>
       <input type= "button" value = "Clear Map" onclick= "clearIt()"> 
+      <br/>
+      <input type= "button" value = "Internship" onclick= "jobSearchMap('Internship')"> 
+      <br/>
+      <input type= "button" value = "Junior" onclick= "jobSearchMap('Junior')"> 
+      <br/>
+      <input type= "button" value = "Senior" onclick= "jobSearchMap('Senior')"> 
+      <br/>
+
    </form> 
    </div>
 	</div>

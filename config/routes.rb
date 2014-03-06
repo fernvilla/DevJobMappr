@@ -3,6 +3,9 @@ DevJobMappr::Application.routes.draw do
   resources :jobs
   get "maps/index"
   get "maps/jobs_search" => 'maps#jobs_search', as: :map_jobs_search
+  get "maps/experience_search" => 'maps#experience_search', as: :map_experience_search
+  
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
