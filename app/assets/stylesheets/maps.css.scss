@@ -33,52 +33,35 @@ html, body {
      width: 160px/960px * 100%;
 }
 
-
-/*.newbutton {
-     margin: 0 auto;
-     margin-bottom: 60px;
-     z-index: 999;
-     padding-top: 30px;
-}*/
-
-/*.button {
-     color: red;
-     background-color: black;
-
-}*/
+.dropdown {
+    background: red;
+}
 
 #map-canvas img {
      max-width: none;
 }
 
 .app {
-     font-size: 30px;
+     font-size: 35px;
      font-weight: bold;
      color: #CF4858;
      padding-top: 7px;
      padding-left: 10px;
      margin-left: 20px;
-     font-family: 'Kreon', serif;
-
-}
+font-family: 'Cambo', serif;}
 
 .top-bar {
-    height: 70px;
-/*     background: none;
-*//*    height: 58px;
-*/    line-height: 58px;
-    margin-bottom: 0;
-    font-family: 'Kreon', serif;
+     height: 70px;
+     line-height: 58px;
+     margin-bottom: 0;
+     font-family: 'Cambo', serif;
 }
   
-    
-
-
 .job {
-margin-left: 50px;
-height: 50px;
-line-height : 30px;
-background-color: #385B9F;
+     margin-left: 60px;
+     margin-top: 7px;
+     line-height : 30px;
+     background-color: #385B9F;
 }
 
 
@@ -86,9 +69,7 @@ background-color: #385B9F;
 	background-color: #168A8F;
 }
 
-.signup {
-margin-left: 1300px;
-margin-bottom: 80px;
-padding: 30px;
-margin: 40px;
+.right {
+     margin-right: 70px;
+     font-size: 30px;
 }
