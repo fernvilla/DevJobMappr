@@ -1,8 +1,6 @@
-<script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBB0sLGR2L5kT8sIFVdYDnLh-ohiw_ZzKk&sensor=true">
-    </script>
-    <script type="text/javascript">
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBB0sLGR2L5kT8sIFVdYDnLh-ohiw_ZzKk&sensor=true"></script>
 
+<script type="text/javascript">
   var geocoder;
   var map;
   var markers = [];
@@ -17,9 +15,18 @@
     }
 
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); 
- 
+
+  var center;
+    function calculateCenter() {
+      center = map.getCenter();
+    }
+    google.maps.event.addDomListener(map, 'idle', function() {
+      calculateCenter();
+    });
+    google.maps.event.addDomListener(window, 'resize', function() {
+      map.setCenter(center);
+    });
  }
-  google.maps.event.addDomListener(window, 'page:change', initialize);
 
   // create a function that takes in argument 'x' from the click of the button and call is made through the GET and then after it gets a response it runs on mapMaker on line 31. 
   function searchMap(x) {
@@ -39,7 +46,6 @@
     var i, newMarker;
     var infowindow = new google.maps.InfoWindow();
     
-
     for (i=0; i < jobs_array.length; i++) {
       newMarker = new google.maps.Marker({
         position: new google.maps.LatLng(jobs_array[i].latitude, jobs_array[i].longitude),
@@ -53,11 +59,11 @@
             infowindow.open(map, newMarker);
           }
         })(newMarker, i));   
-        //push items into an array
-        markers.push(newMarker);
-        
+      //push items into an array
+      markers.push(newMarker);    
     };
-  }
+ }
+
   //set map from array
   function setAllMap(map) {
     for (var i = 0; i < markers.length; i++) {
@@ -66,10 +72,12 @@
   }
 
   //clear the map
-  function clearIt () {
+  function clearIt() {
     setAllMap(null);
     // markers = [];  
   }
+
+google.maps.event.addDomListener(window, 'page:change', initialize);
 </script>
 
 <div id="page-wrapper">
