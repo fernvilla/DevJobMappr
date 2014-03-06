@@ -46,7 +46,8 @@ Hi <%= current_user.email %></a>
 <% end %>
 </section>
 </nav>
-    <%= yield %>
     <%= javascript_include_tag "application" %>
+    <%= yield %>
+    
   </body>
 </html>

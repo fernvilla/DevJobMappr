@@ -5,7 +5,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "dan#{n}@example.com"} 
     #//sequence allows us to iterate through the Factory and create different users.
   	#email "dan@example.com"
-  	password "passwordfuck"
+  	password "password"
     provider "twitter"
     sequence(:uid) { |n| "#{n}"}
   end

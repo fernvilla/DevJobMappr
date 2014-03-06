@@ -5,7 +5,8 @@
 
   var geocoder;
   var map;
-  // var last_marker;
+  var markers = [];
+
   function initialize() {
     geocoder = new google.maps.Geocoder();
     var myLatLng = new google.maps.LatLng(33.97545, -118.3473);
@@ -29,6 +30,7 @@
       mapMaker(msg);
     });
   }
+
   //this is a function mapMaker that takes the JSON and then plots the map. 
   function mapMaker(jobs_array){
      console.log(jobs_array);
@@ -36,40 +38,54 @@
     //for loop to place each marker with stored information. 
     var i, newMarker;
     var infowindow = new google.maps.InfoWindow();
+    
 
     for (i=0; i < jobs_array.length; i++) {
-        newMarker = new google.maps.Marker({
-          position: new google.maps.LatLng(jobs_array[i].latitude, jobs_array[i].longitude),
-          map: map, 
-          title: (jobs_array[i].job_title)
-          });
-          google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
-            return function() {
-              infowindow.setContent(jobs_array[i].job_title + "<br/>" + jobs_array[i].company_name + "<br/>" + jobs_array[i].primary_languages);
-              infowindow.open(map, newMarker);
-            }
-          })(newMarker, i));   
-          newMarker.setVisible(true);
+      newMarker = new google.maps.Marker({
+        position: new google.maps.LatLng(jobs_array[i].latitude, jobs_array[i].longitude),
+        map: map, 
+        title: (jobs_array[i].job_title),
+        // animation: google.maps.Animation.DROP
+        });
+        google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
+          return function() {
+            infowindow.setContent(jobs_array[i].job_title + "<br/>" + jobs_array[i].company_name + "<br/>" + jobs_array[i].primary_languages);
+            infowindow.open(map, newMarker);
+          }
+        })(newMarker, i));   
+        //push items into an array
+        markers.push(newMarker);
+        
     };
+  }
+  //set map from array
+  function setAllMap(map) {
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+  }
+
+  //clear the map
+  function clearIt () {
+    setAllMap(null);
+    // markers = [];  
   }
 </script>
 
-
 <div id="page-wrapper">
-
 	<div id="map-wrapper">
 	 <div id="map-canvas"> </div>
-   
 	 <div id= "sidebar">
     <form action="#" style="text-align: center; margin: 5px;">
-       <input type= "button" value = "All Jobs" onclick= "searchMap('')"> 
-    <br /> 
+      <input type= "button" value = "All Jobs" onclick= "searchMap('')"> 
+      <br>
       <input type= "button" value = "Front End" onclick= "searchMap('Front-End')"> 
-    <br />
+      <br>
       <input type= "button" value = "Back End" onclick= "searchMap('Back-End')"> 
-    <br />
+      <br>
       <input type= "button" value = "Full Stack" onclick= "searchMap('Full-Stack')"> 
-    <br />
+      <br>
+      <input type= "button" value = "Clear Map" onclick= "clearIt()"> 
    </form> 
    </div>
 	</div>
