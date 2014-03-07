@@ -6,6 +6,7 @@ class JobsController < ApplicationController
       redirect_to new_user_session_path
       flash[:alert] = "Please sign in first"
     end
+    @response = Job.import_jobs
   end
 
   def create

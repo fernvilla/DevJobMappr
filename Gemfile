@@ -6,6 +6,7 @@ gem 'rails', '4.0.3'
 # D3 data visualization
 gem 'd3_rails'
 
+gem 'httparty', '0.11.0'
 # Authentication
 gem 'devise'
 gem 'omniauth'
