@@ -5,6 +5,7 @@ DevJobMappr::Application.routes.draw do
   get "maps/jobs_search" => 'maps#jobs_search', as: :map_jobs_search
   get "maps/experience_search" => 'maps#experience_search', as: :map_experience_search
   
+  get "maps/indeed_search" => 'maps#indeed_search', as: :map_indeed_search
 
 
   # The priority is based upon order of creation: first created -> highest priority.

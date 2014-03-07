@@ -3,6 +3,7 @@ class Job < ActiveRecord::Base
 
 	validates :latitude, :longitude, numericality: {message: 'must be a number'}
 
+  
 	geocoded_by :company_address
   before_validation :geocode 
 

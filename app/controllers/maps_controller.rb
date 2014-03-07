@@ -19,4 +19,14 @@ class MapsController < ApplicationController
       end
         render json: @jobs
     end
+
+     def indeed_search
+      if params[:category]==''
+        @jobs = Job.all
+      elsif params[:category]
+        @jobs = Job.where(job_key: params[:category])
+      end
+        render json: @jobs
+    end
+
 end
