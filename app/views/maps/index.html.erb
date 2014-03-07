@@ -74,10 +74,10 @@
   function indeedJobs() {
     $.ajax ({
       type:"GET", 
-      dataType: "jsonp",
-      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=web+developer&l=santa+monica%2C+ca&v=2&format=json&latlong=1&st=employer&radius=25&limit=500&callback=?", 
-      }).done(function(msg){
-        mapIndeed(msg);
+      dataType: "json",
+      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=web+developer&l=santa+monica%2C+ca&v=2&format=json&latlong=1&st=employer&radius=20&limit=1000&callback=?", 
+      }).done(function(data){
+        mapIndeed(data);
       });
   }
 
@@ -116,18 +116,17 @@
   }
 
   function mapIndeed(jobs_array){
-    console.log(jobs_array["results"][1]["latitude"], jobs_array["results"][1]["longitude"]);
     //for loop to place each marker with stored information. 
     var i, newMarker;
     var infowindow = new google.maps.InfoWindow();
     
-    for (i=0; i < jobs_array.length; i++) {
+    for (i=0; i < jobs_array["end"]-1; i++) {
       newMarker = new google.maps.Marker({
         position: new google.maps.LatLng(jobs_array["results"][i]["latitude"], jobs_array["results"][i]["longitude"]),
         map: map, 
         title: (jobs_array["results"][i]["jobtitle"]),
         });
-        // console.log(jobs_array["results"][i]["latitude"]);
+        console.log(jobs_array["results"][i]["latitude"],jobs_array["results"][i]["longitude"] );
         google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
           return function() {
             infowindow.setContent(jobs_array["results"][i]["jobtitle"]) ;
