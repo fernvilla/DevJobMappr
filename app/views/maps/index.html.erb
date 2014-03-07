@@ -38,6 +38,15 @@
     });
   }
 
+  function indeedJobs() {
+    $.ajax ({
+      type:"GET", 
+      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=web+developer&l=santa+monica%2C+ca&v=2&format=json&latlong=1&st=employer&radius=25&callback=mapIndeed", 
+      }).done(function(msg){
+        mapIndeed(msg);
+      });
+  }
+
    function jobSearchMap(x) {
     $.ajax ({
       type:"GET", 
@@ -46,6 +55,7 @@
       mapMaker(msg);
     });
   }
+
 
   //this is a function mapMaker that takes the JSON and then plots the map. 
   function mapMaker(jobs_array){
@@ -73,6 +83,31 @@
     };
  }
 
+
+  function mapIndeed(jobs_array){
+     console.log(jobs_array);
+
+    //for loop to place each marker with stored information. 
+    var i, newMarker;
+    var infowindow = new google.maps.InfoWindow();
+    
+    for (i=0; i < jobs_array.length; i++) {
+      newMarker = new google.maps.Marker({
+        position: new google.maps.LatLng(jobs_array[i].results.latitude, jobs_array[i].results.longitude),
+        map: map, 
+        title: (jobs_array[i].results.jobtitle),
+        // animation: google.maps.Animation.DROP
+        });
+        google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
+          return function() {
+            infowindow.setContent(jobs_array[i].results.jobtitle + "<br/>" + jobs_array[i].results.company_name + "<br/>" + jobs_array[i].results.primary_languages, + "<br/>"+jobs_array[i].results.experience_level);
+            infowindow.open(map, newMarker);
+          }
+        })(newMarker, i));   
+      //push items into an array
+      markers.push(newMarker);    
+    };
+ }
   //set map from array
   function setAllMap(map) {
     for (var i = 0; i < markers.length; i++) {
@@ -110,6 +145,7 @@ google.maps.event.addDomListener(window, 'page:change', initialize);
       <br/>
       <input type= "button" value = "Senior" onclick= "jobSearchMap('Senior')"> 
       <br/>
+      <input type= "button" value = "Indeed" onclick= "indeedJobs()"> 
 
    </form> 
    </div>

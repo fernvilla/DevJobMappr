@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304044529) do
+ActiveRecord::Schema.define(version: 20140306234407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,9 +34,16 @@ ActiveRecord::Schema.define(version: 20140304044529) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "user_id"
+    t.string   "job_key"
   end
 
+  add_index "jobs", ["job_key"], name: "index_jobs_on_job_key", using: :btree
   add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
+
+  create_table "maps", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
