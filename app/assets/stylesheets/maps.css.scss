@@ -56,7 +56,8 @@ html, body {
      padding-top: 7px;
      padding-left: 10px;
      margin-left: 20px;
-font-family: 'Cambo', serif;}
+     font-family: 'Cambo', serif;
+}
 
 .top-bar {
      height: 70px;
@@ -80,4 +81,34 @@ font-family: 'Cambo', serif;}
 .right {
      margin-right: 70px;
      font-size: 30px;
+}
+
+.button#clear{
+     background-color: #800000;
+     box-shadow: 1px 1px 2px #000;
+}
+
+#accordion {
+     padding: 0 13px;
+     margin: 0 auto;
+     text-align: left;
+     color: #000;
+}
+
+#accordion div {
+     padding: 10px;
+}
+
+#accordion a:hover {
+     color: #004080;
+}
+
+#accordion a {
+     font-size: 15px;
+}
+
+#credits {
+     color: #FFF;
+     font-size: 11px;
+     padding: 12px;
 }

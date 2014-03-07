@@ -1,6 +1,7 @@
 class MapsController < ApplicationController
   def index
     @maps = Map.all
+    @jobs = Job.all
   end
     def jobs_search 
       if params[:category]==''
