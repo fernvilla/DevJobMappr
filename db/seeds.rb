@@ -5,17 +5,39 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-# Job.destroy_all
+Job.destroy_all
 
-jobs = Job.create([{
-  job_title: 'Digital Media Designer', company_name: 'Warner Bros. Entertainment Group', experience_level: 'Senior', job_description: 'Developer', primary_languages: 'Ruby', secondary_languages: 'CSS', job_type: 'Front-End', latitude: 34.17857, longitude: -118.30769}, 
- {job_title: 'Junior Back End Web Developer', company_name: 'Dahali Wolf', experience_level: 'Junior', job_description: 'Developer', primary_languages: 'HTML', secondary_languages: 'CSS', job_type: 'Back-End', latitude: 34.052197, longitude: -118.24176}])
+jobs = Job.create([{job_title: 'Digital Media Designer', company_name: 'Warner Bros. Entertainment Group', experience_level: 'Senior', job_description: 'Developer', primary_languages: 'Ruby', job_type: 'Front-End', company_address: '14000 Warner Blvd, Burbank, CA 91522'}, 
 
-jobs.each do |j|
-address_feed = j.latitude + j.longitude 
-company_address = Geocoder.coordinates(address_feed)
-j.save
-end
+  {job_title: 'Junior Back End Web Developer', company_name: 'Dahlia Wolf', experience_level: 'Junior', job_description: 'Developer', primary_languages: 'HTML', job_type: 'Back-End', company_address: 'Los Angeles CA'},
+
+  {job_title: 'Software Developer', company_name: 'Hulu', experience_level: 'Senior', job_description: 'Developer', primary_languages: 'HTML', job_type: 'Full-Stack', company_address: '2500 Broadway, Santa Monica, CA 90404'},
+
+  {job_title: 'Web Designer/Developer', company_name: 'Uber', experience_level: 'Junior', job_description: 'Developer', primary_languages: 'SQL', job_type: 'Full-Stack', company_address: '2500 Broadway, Santa Monica, CA 90404'},
+
+  {job_title: 'Software Engineer', company_name: 'Google', experience_level: 'Senior', job_description: 'Developer', primary_languages: 'Angular JS', job_type: 'Full-Stack', company_address: '604 Arizona Ave, Santa Monica, CA 90401'},
+
+   {job_title: 'Front End Web Developer', company_name: 'NBC Universal', experience_level: 'Senior', job_description: 'Developer', primary_languages: 'HTML', job_type: 'Full-Stack', company_address: '3000 W Alameda Ave Burbank, CA 91523'},
+
+   {job_title: 'Product Manager - Mobile', company_name: 'Hulu', experience_level: 'Senior', job_description: 'Product Manager', primary_languages: 'HTML', job_type: 'Full-Stack', company_address: '2500 Broadway, Santa Monica, CA 90404'},
+
+   {job_title: 'Software Engineer, Mobile Applications (Android / iOS)', company_name: 'Google', experience_level: 'Senior', job_description: 'Product Manager', primary_languages: 'HTML', job_type: 'Full-Stack', company_address: '604 Arizona Ave, Santa Monica, CA 90401'},
+
+   {job_title: 'Programmer', company_name: 'Programmer', experience_level: 'Senior', job_description: 'Developer', primary_languages: 'Python', job_type: 'Full-Stack', company_address: 'Beverly Hills, CA'},
+
+   {job_title: 'Web Application Developer', company_name: 'Programmer', experience_level: 'Senior', job_description: 'Developer', primary_languages: 'php', job_type: 'Full-Stack', company_address: 'Culver City, CA'},
+
+   {job_title: 'Sr. Front End Software Engineer', company_name: 'Programmer', experience_level: 'Senior', job_description: 'Developer', primary_languages: 'Firebug', job_type: 'Full-Stack', company_address: 'Santa Monica, CA'},
+
+   {job_title: 'UI Developer', company_name: 'Programmer', experience_level: 'Junior', job_description: 'Developer', primary_languages: 'Firebug', job_type: 'Front-End', company_address: '2850 Ocean Park, Santa Monica, CA 90405'},
+
+
+   {job_title: 'Web Developer', company_name: 'MV Labs', experience_level: 'Junior', job_description: 'Developer', primary_languages: 'HTML', job_type: 'Back-End', company_address: 'Santa Monica, CA 90405'}
+
+  ])
+
+
+
 
 
 
