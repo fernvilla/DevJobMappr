@@ -40,11 +40,6 @@ ActiveRecord::Schema.define(version: 20140306234407) do
   add_index "jobs", ["job_key"], name: "index_jobs_on_job_key", using: :btree
   add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
 
-  create_table "maps", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
