@@ -75,7 +75,7 @@
     $.ajax ({
       type:"GET", 
       dataType: "json",
-      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=web+developer&l=santa+monica%2C+ca&v=2&format=json&latlong=1&st=employer&radius=20&limit=1000&callback=?", 
+      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=web+developer&l=santa+monica%2C+ca&v=2&format=json&latlong=1&radius=15&limit=30&callback=?", 
       }).done(function(data){
         mapIndeed(data);
       });
@@ -116,6 +116,8 @@
   }
 
   function mapIndeed(jobs_array){
+    console.log(jobs_array["results"][0]);
+    console.log(jobs_array["results"][24]);
     //for loop to place each marker with stored information. 
     var i, newMarker;
     var infowindow = new google.maps.InfoWindow();
@@ -126,7 +128,7 @@
         map: map, 
         title: (jobs_array["results"][i]["jobtitle"]),
         });
-        console.log(jobs_array["results"][i]["latitude"],jobs_array["results"][i]["longitude"] );
+        // console.log(jobs_array["results"][i]["latitude"],jobs_array["results"][i]["longitude"] );
         google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
           return function() {
             infowindow.setContent(jobs_array["results"][i]["jobtitle"]) ;
@@ -151,32 +153,99 @@
     // markers = [];  
   }
 
-  google.maps.event.addDomListener(window, 'page:change', initialize);
+google.maps.event.addDomListener(window, 'page:change', initialize);
 </script>
+
+<script>
+  $(function() {
+    $( "#accordion" ).accordion({
+      collapsible: true,
+      active: false
+    });
+  }); 
+</script>
+
 
 <div id="page-wrapper">
 	<div id="map-wrapper">
 	 <div id="map-canvas"> </div>
 	 <div id= "sidebar">
-    <form action="#" style="text-align: center; margin: 5px;">
-      <input type= "button" value = "All Jobs" onclick= "searchMap('')"> 
-      <br/>
-      <input type= "button" value = "Front End" onclick= "searchMap('Front-End')"> 
-      <br/>
-      <input type= "button" value = "Back End" onclick= "searchMap('Back-End')"> 
-      <br/>
-      <input type= "button" value = "Full Stack" onclick= "searchMap('Full-Stack')"> 
-      <br/>
-      <input type= "button" value = "Clear Map" onclick= "clearIt()"> 
-      <br/>
-      <input type= "button" value = "Internship" onclick= "jobSearchMap('Internship')"> 
-      <br/>
-      <input type= "button" value = "Junior" onclick= "jobSearchMap('Junior')"> 
-      <br/>
-      <input type= "button" value = "Senior" onclick= "jobSearchMap('Senior')"> 
-      <br/>
-      <input type= "button" value = "Indeed" onclick= "indeedJobs()"> 
-   </form> 
+
+  
+  <div id="accordion">
+    <h3><a href="#" onclick="searchMap('')">All Developer Jobs</a></h3>
+    <div>
+      <% @jobs.limit(5).each do |job| %>
+        <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+      <% end %>
+    </div>
+
+    <h3><a href="#" onclick= "searchMap('Front-End')">Front-End</a></h3>
+    <div>
+      <% @jobs.limit(5).each do |job| %>
+        <% if job.job_type == "Front-End" %>
+          <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+        <% end %>
+      <% end %>
+    </div>
+
+    <h3><a href="#" onclick= "searchMap('Back-End')">Back-End</a></h3>
+    <div>
+      <% @jobs.limit(5).each do |job| %>
+        <% if job.job_type == "Back-End" %>
+          <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+        <% end %>
+      <% end %>
+    </div>
+
+    <h3><a href="#" onclick= "searchMap('Full-Stack')">Full-Stack</a></h3>
+    <div>
+      <% @jobs.limit(5).each do |job| %>
+        <% if job.job_type == "Full-Stack" %>
+          <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+        <% end %>
+      <% end %>
+    </div>
+
+    <h3><a href="#" onclick= "jobSearchMap('Junior')">Junior Level</a></h3>
+    <div>
+      <% @jobs.limit(5).each do |job| %>
+        <% if job.experience_level == "Junior" %>
+          <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+        <% end %>
+      <% end %>
+    </div>
+
+    <h3><a href="#" onclick= "jobSearchMap('Senior')">Senior Level</a></h3>
+    <div>
+      <% @jobs.limit(5).each do |job| %>
+        <% if job.experience_level == "Senior" %>
+          <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+        <% end %>
+      <% end %>
+    </div>
+
+    <h3><a href="#" onclick= "jobSearchMap('Internship')">Internship</a></h3>
+    <div>
+      <% @jobs.limit(5).each do |job| %>
+        <% if job.experience_level == "Internship" %>
+          <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+        <% end %>
+      <% end %>
+    </div>
+
+    <h3><a href="#" onclick= "indeedJobs()">Indeed.com Jobs</a></h3>
+    <div>
+      
+    </div>
+  </div>
+ 
+  <br>
+  <div>
+    <input type="button" class="button tiny" id="clear" onclick= "clearIt()" value="Clear Map" />
+  </div>
+  <p id="credits">Created at General Assembly Los Angeles by Daniel Iwao, Fernando Villasenor and Rachel Bailin.</p>   
+
    </div>
 	</div>
 </div>
