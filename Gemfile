@@ -7,6 +7,7 @@ gem 'rails', '4.0.3'
 gem 'd3_rails'
 
 gem 'httparty', '0.11.0'
+
 # Authentication
 gem 'devise'
 gem 'omniauth'

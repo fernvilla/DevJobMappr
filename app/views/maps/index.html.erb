@@ -21,7 +21,7 @@
       styles: stylesArray,
   }
 
-    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); 
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); 
 
   var center;
     function calculateCenter() {
@@ -44,37 +44,38 @@
       mapMaker(msg);
     });
   }
-    if(navigator.geolocation) {
-    browserSupportFlag = true;
-    navigator.geolocation.getCurrentPosition(function(position) {
-      initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-      map.setCenter(initialLocation);
-    }, function() {
-      handleNoGeolocation(browserSupportFlag);
-    });
-  }
-  // Browser doesn't support Geolocation
-  else {
-    browserSupportFlag = false;
-    handleNoGeolocation(browserSupportFlag);
-  }
+  //   if(navigator.geolocation) {
+  //   browserSupportFlag = true;
+  //   navigator.geolocation.getCurrentPosition(function(position) {
+  //     initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+  //     map.setCenter(initialLocation);
+  //   }, function() {
+  //     handleNoGeolocation(browserSupportFlag);
+  //   });
+  // }
+  // // Browser doesn't support Geolocation
+  // else {
+  //   browserSupportFlag = false;
+  //   handleNoGeolocation(browserSupportFlag);
+  // }
 
-  function handleNoGeolocation(errorFlag) {
-    if (errorFlag == true) {
-      alert("Geolocation service failed.");
-      initialLocation = newyork;
-    } else {
-      alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
-      initialLocation = siberia;
-    }
-    map.setCenter(initialLocation);
-  }
+  // function handleNoGeolocation(errorFlag) {
+  //   if (errorFlag == true) {
+  //     alert("Geolocation service failed.");
+  //     initialLocation = newyork;
+  //   } else {
+  //     alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
+  //     initialLocation = siberia;
+  //   }
+  //   map.setCenter(initialLocation);
+  // }
 
 
   function indeedJobs() {
     $.ajax ({
       type:"GET", 
-      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=web+developer&l=santa+monica%2C+ca&v=2&format=json&latlong=1&st=employer&radius=25&callback=mapIndeed", 
+      dataType: "jsonp",
+      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=web+developer&l=santa+monica%2C+ca&v=2&format=json&latlong=1&st=employer&radius=25&limit=500&callback=?", 
       }).done(function(msg){
         mapIndeed(msg);
       });
@@ -89,11 +90,9 @@
     });
   }
 
-
   //this is a function mapMaker that takes the JSON and then plots the map. 
   function mapMaker(jobs_array){
-     console.log(jobs_array);
-
+    console.log(jobs_array);
     //for loop to place each marker with stored information. 
     var i, newMarker;
     var infowindow = new google.maps.InfoWindow();
@@ -114,44 +113,32 @@
       //push items into an array
       markers.push(newMarker);    
     };
-
-var center;
-function calculateCenter() {
-  center = map.getCenter();
-}
-google.maps.event.addDomListener(map, 'idle', function() {
-  calculateCenter();
-});
-google.maps.event.addDomListener(window, 'resize', function() {
-  map.setCenter(center);
-});
- }
-
+  }
 
   function mapIndeed(jobs_array){
-     console.log(jobs_array);
-
+    console.log(jobs_array["results"][1]["latitude"], jobs_array["results"][1]["longitude"]);
     //for loop to place each marker with stored information. 
     var i, newMarker;
     var infowindow = new google.maps.InfoWindow();
     
     for (i=0; i < jobs_array.length; i++) {
       newMarker = new google.maps.Marker({
-        position: new google.maps.LatLng(jobs_array[i].results.latitude, jobs_array[i].results.longitude),
+        position: new google.maps.LatLng(jobs_array["results"][i]["latitude"], jobs_array["results"][i]["longitude"]),
         map: map, 
-        title: (jobs_array[i].results.jobtitle),
-        // animation: google.maps.Animation.DROP
+        title: (jobs_array["results"][i]["jobtitle"]),
         });
+        // console.log(jobs_array["results"][i]["latitude"]);
         google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
           return function() {
-            infowindow.setContent(jobs_array[i].results.jobtitle + "<br/>" + jobs_array[i].results.company_name + "<br/>" + jobs_array[i].results.primary_languages, + "<br/>"+jobs_array[i].results.experience_level);
+            infowindow.setContent(jobs_array["results"][i]["jobtitle"]) ;
             infowindow.open(map, newMarker);
           }
         })(newMarker, i));   
-      //push items into an array
+      // push items into an array
       markers.push(newMarker);    
     };
- }
+  }
+
   //set map from array
   function setAllMap(map) {
     for (var i = 0; i < markers.length; i++) {
@@ -165,8 +152,8 @@ google.maps.event.addDomListener(window, 'resize', function() {
     // markers = [];  
   }
 
-google.maps.event.addDomListener(window, 'page:change', initialize);
- </script>
+  google.maps.event.addDomListener(window, 'page:change', initialize);
+</script>
 
 <div id="page-wrapper">
 	<div id="map-wrapper">
@@ -190,7 +177,6 @@ google.maps.event.addDomListener(window, 'page:change', initialize);
       <input type= "button" value = "Senior" onclick= "jobSearchMap('Senior')"> 
       <br/>
       <input type= "button" value = "Indeed" onclick= "indeedJobs()"> 
-
    </form> 
    </div>
 	</div>
