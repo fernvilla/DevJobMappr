@@ -80,7 +80,7 @@
         });
         google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
           return function() {
-            infowindow.setContent(jobs_array[i].job_title + "<br/>" + jobs_array[i].company_name + "<br/>" + jobs_array[i].primary_languages, + "<br/>"+jobs_array[i].company + "<br>" );
+            infowindow.setContent(jobs_array[i].job_title + "<br/>" + jobs_array[i].company_name + "<br/>" +  '<a href="' + jobs_array[i].job_link + '" target="blank">Link to Job</a>');
             infowindow.open(map, newMarker);
           }
         })(newMarker, i));   
@@ -98,7 +98,7 @@
       newMarker = new google.maps.Marker({
         position: new google.maps.LatLng(jobs_array["results"][i]["latitude"], jobs_array["results"][i]["longitude"]),
         map: map, 
-        icon: '<%= asset_path 'indeed.png' %>',
+        // icon: '<%= asset_path 'indeed.png' %>',
         title: (jobs_array["results"][i]["jobtitle"]),
         });
         // console.log(jobs_array["results"][i]["latitude"],jobs_array["results"][i]["longitude"] );
@@ -148,61 +148,61 @@ google.maps.event.addDomListener(window, 'page:change', initialize);
   <div id="accordion">
     <h3><a href="#" onclick="searchMap('')">All Developer Jobs</a></h3>
     <div>
-      <% @jobs.limit(5).each do |job| %>
-        <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+      <% @jobs.each do |job| %>
+        <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
       <% end %>
     </div>
 
     <h3><a href="#" onclick= "searchMap('Front-End')">Front-End</a></h3>
     <div>
-      <% @jobs.limit(5).each do |job| %>
+      <% @jobs.each do |job| %>
         <% if job.job_type == "Front-End" %>
-          <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+          <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       <% end %>
     </div>
 
     <h3><a href="#" onclick= "searchMap('Back-End')">Back-End</a></h3>
     <div>
-      <% @jobs.limit(5).each do |job| %>
+      <% @jobs.each do |job| %>
         <% if job.job_type == "Back-End" %>
-          <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+          <h6><a href="http://<%= job.job_link %>" target="blank"><%= job.job_title %></a></h6>
         <% end %>
       <% end %>
     </div>
 
     <h3><a href="#" onclick= "searchMap('Full-Stack')">Full-Stack</a></h3>
     <div>
-      <% @jobs.limit(5).each do |job| %>
+      <% @jobs.each do |job| %>
         <% if job.job_type == "Full-Stack" %>
-          <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+          <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       <% end %>
     </div>
 
     <h3><a href="#" onclick= "jobSearchMap('Junior')">Junior Level</a></h3>
     <div>
-      <% @jobs.limit(5).each do |job| %>
+      <% @jobs.each do |job| %>
         <% if job.experience_level == "Junior" %>
-          <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+          <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       <% end %>
     </div>
 
     <h3><a href="#" onclick= "jobSearchMap('Senior')">Senior Level</a></h3>
     <div>
-      <% @jobs.limit(5).each do |job| %>
+      <% @jobs.each do |job| %>
         <% if job.experience_level == "Senior" %>
-          <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+          <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       <% end %>
     </div>
 
     <h3><a href="#" onclick= "jobSearchMap('Internship')">Internship</a></h3>
     <div>
-      <% @jobs.limit(5).each do |job| %>
+      <% @jobs.each do |job| %>
         <% if job.experience_level == "Internship" %>
-          <h6><a href="http://<%= job.job_link %>" target="blank">- <%= job.job_title %></a></h6>
+          <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       <% end %>
     </div>
