@@ -19,17 +19,17 @@
         <a href="http://localhost:3000/" style="color: #CF4858"</a> 
         JobMappr
       </div>
-        <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+        <li class="toggle-topbar menu-icon"><span>menu</span></li>
        </ul>
         <section class="top-bar-section">
           <%= link_to_modal 'New Job', new_job_path, :class=>"button [radius round] left job" %> 
           <% if user_signed_in? %>
             <ul class="right">
               <li class="has-dropdown">
-          <a href="">
+          <a href="", class="dashboard">
             Hi <%= current_user.email %></a>
             <ul class="dropdown">
-              <li> <%= link_to "Dashboard", jobs_path %>
+              <li> <%= link_to "Dashboard", jobs_path, :class=>"dashboard" %>
               <li> <%= link_to "Sign Out", destroy_user_session_path,:method => :delete %>
             </li>
         </ul>
