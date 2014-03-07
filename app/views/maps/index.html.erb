@@ -5,14 +5,22 @@
   var map;
   var markers = [];
 
+  var stylesArray = [{"featureType": "water","elementType": "geometry","stylers": [{"color": "#a2daf2"}]},{"featureType": "landscape.man_made","elementType": "geometry","stylers": [{"color": "#f7f1df"}]},{"featureType": "landscape.natural","elementType": "geometry","stylers": [{"color": "#d0e3b4"}]},{"featureType": "landscape.natural.terrain","elementType": "geometry","stylers": [{"visibility": "off"}]},{"featureType": "poi.park","elementType": "geometry",
+    "stylers": [{"color": "#bde6ab"}]},{"featureType": "poi","elementType": "labels","stylers": [{"visibility": "off"}]},
+    {"featureType": "poi.medical","elementType": "geometry","stylers": [{"color": "#fbd3da"}]},{"featureType": "poi.business","stylers": [{"visibility": "off"}]},{"featureType": "road","elementType": "geometry.stroke","stylers": [{
+    "visibility": "off"}]},{"featureType": "road","elementType": "labels","stylers": [{"visibility": "off"}]},{"featureType": "road.highway","elementType": "geometry.fill","stylers": [{"color": "#ffe15f"}]},{"featureType": "road.highway","elementType": "geometry.stroke","stylers": [{"color": "#efd151"}]},{"featureType": "road.arterial","elementType": "geometry.fill","stylers": [{"color": "#ffffff"}]},{"featureType": "road.local","elementType": "geometry.fill","stylers": [{"color": "black"}]},{"featureType": "transit.station.airport","elementType": "geometry.fill","stylers": [{"color": "#cfb2db"}]}]
+             
+  // var last_marker;
   function initialize() {
     geocoder = new google.maps.Geocoder();
     var myLatLng = new google.maps.LatLng(33.97545, -118.3473);
 
     var mapOptions = {
       zoom: 11,
-      center: myLatLng
-    }
+      center: myLatLng,
+      styles: stylesArray,
+  }
+
 
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); 
 
@@ -37,6 +45,32 @@
       mapMaker(msg);
     });
   }
+    if(navigator.geolocation) {
+    browserSupportFlag = true;
+    navigator.geolocation.getCurrentPosition(function(position) {
+      initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+      map.setCenter(initialLocation);
+    }, function() {
+      handleNoGeolocation(browserSupportFlag);
+    });
+  }
+  // Browser doesn't support Geolocation
+  else {
+    browserSupportFlag = false;
+    handleNoGeolocation(browserSupportFlag);
+  }
+
+  function handleNoGeolocation(errorFlag) {
+    if (errorFlag == true) {
+      alert("Geolocation service failed.");
+      initialLocation = newyork;
+    } else {
+      alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
+      initialLocation = siberia;
+    }
+    map.setCenter(initialLocation);
+  }
+
 
    function jobSearchMap(x) {
     $.ajax ({
@@ -71,6 +105,17 @@
       //push items into an array
       markers.push(newMarker);    
     };
+
+var center;
+function calculateCenter() {
+  center = map.getCenter();
+}
+google.maps.event.addDomListener(map, 'idle', function() {
+  calculateCenter();
+});
+google.maps.event.addDomListener(window, 'resize', function() {
+  map.setCenter(center);
+});
  }
 
   //set map from array
@@ -87,7 +132,7 @@
   }
 
 google.maps.event.addDomListener(window, 'page:change', initialize);
-</script>
+ </script>
 
 <div id="page-wrapper">
 	<div id="map-wrapper">
