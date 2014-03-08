@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "DevJobMappr" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "DevJobs.Map" %></title>
     <link href='http://fonts.googleapis.com/css?family=Cambo' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -12,36 +12,35 @@
   </head>
 
   <body>
-      <nav class="top-bar" data-topbar>
-        <ul class="title-area">
-      <!-- Title Area -->
-      <div class="app">
-        <a href="http://localhost:3000/" style="color: #CF4858"</a> 
-        JobMappr
-      </div>
-        <li class="toggle-topbar menu-icon"><span>menu</span></li>
-       </ul>
-        <section class="top-bar-section">
-          <%= link_to_modal 'New Job', new_job_path, :class=>"button [radius round] left job" %> 
-          <% if user_signed_in? %>
-            <ul class="right">
-              <li class="has-dropdown">
-          <a href="", class="dashboard">
-            Hi <%= current_user.email %></a>
-            <ul class="dropdown">
-              <li> <%= link_to "Dashboard", jobs_path, :class=>"dashboard" %>
-              <li> <%= link_to "Sign Out", destroy_user_session_path,:method => :delete %>
-            </li>
-        </ul>
+    <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="#">DevJobs.<span id="title">Map</span></a></h1>
       </li>
+      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
     </ul>
-<% else %>
-  <%= link_to_modal "Sign In", new_user_session_path, :class=>"right" %>
-  <%= link_to_modal "Sign Up", new_user_registration_path, :class=>"right" %>
-<% end %>
 
-</section>
-</nav>
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <%= link_to_modal 'Submit A Job', new_job_path, :class=>"button tiny left job" %>
+      <ul class="right">
+        <li class="has-dropdown">
+          <% if user_signed_in? %>
+            <a href="", class="dashboard">Hi <%= current_user.email %></a>
+            <ul class="dropdown">
+              <li> <%= link_to "Jobs Dashboard", jobs_path, :class=>"dashboard" %> </li>
+              <li> <%= link_to "Sign Out", destroy_user_session_path,:method => :delete %> </li>    
+            </ul>
+        </li>
+        <% else %>
+          <ul class="right">
+            <li><%= link_to_modal "Sign In", new_user_session_path, :class=>"right" %></li>
+            <li><%= link_to_modal "Sign Up", new_user_registration_path, :class=>"right" %></li>
+          </ul>
+        <% end %>
+        </ul>
+      </section>
+    </nav>
     
     <%= javascript_include_tag "application" %>
     <%= yield %>
