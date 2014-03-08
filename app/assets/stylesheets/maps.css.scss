@@ -24,7 +24,6 @@ html, body {
      height: 100%;
      float: left;
      width: 82%;
-     border: 3px solid #4c4c4c;
 }
 
 #sidebar {
@@ -45,10 +44,14 @@ html, body {
 }
 
 .name a {
-     font-size: 25px;
+     font-size: 30px;
      font-weight: bold;
-     padding-top: 7px;
-     margin-left: 40px;
+     margin-left: 30px;
+     text-shadow: 1px 1px 1px #000;
+}
+
+#title {
+     color: #ff0000;
 }
 
 .top-bar {
@@ -60,20 +63,20 @@ html, body {
 .top-bar-section .right{
      font-size: 15px;
      color: #FFF;
-     padding-right: 20px;
+     padding-right: 30px;
      font-family: 'Roboto Condensed', sans-serif;
 }
 
 .job {
-     margin-left: 40px;
-     line-height: 20px;
+     margin-left: 20px;
+     margin-top: 3px;
      background-color: #385B9F;
 }
 
 .button {
      background-color: #999999;
-     box-shadow: 1px 1px 2px #000;
-     border-radius: 5px outset red;
+     box-shadow: 1px 1px 1px #000;
+     border-radius: 1px solid #FFF;
 }
 
 .button:hover {
@@ -108,7 +111,7 @@ html, body {
 }
 
 #clear-btn {
-     margin-top: 20px;
+     margin-top: 10px;
 }
 
 #credits {

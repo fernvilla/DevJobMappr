@@ -3,9 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
-# D3 data visualization
-gem 'd3_rails'
-
 gem 'httparty', '0.11.0'
 
 # Authentication
