@@ -49,7 +49,7 @@
     $.ajax ({
       type:"GET", 
       dataType: "json",
-      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=web+developer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=15&limit=30&callback=?&fromage=30", 
+      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=web+developer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=25&limit=30&callback=?&fromage=30", 
       }).done(function(data){
         mapIndeed(data);
       });
@@ -133,83 +133,82 @@ google.maps.event.addDomListener(window, 'page:change', initialize);
   $(function() {
     $( "#accordion" ).accordion({
       collapsible: true,
-      active: false
+      active: false,
+      heightStyle: "fill"
     });
   }); 
 </script>
-
 
 <div id="page-wrapper">
 	<div id="map-wrapper">
 	 <div id="map-canvas"> </div>
 	 <div id= "sidebar">
 
-  
-  <div id="accordion">
-    <h3><a href="#" onclick="searchMap('')">All Developer Jobs</a></h3>
-    <div>
-      <% @jobs.each do |job| %>
-        <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
-      <% end %>
-    </div>
-
-    <h3><a href="#" onclick= "searchMap('Front-End')">Front-End</a></h3>
-    <div>
-      <% @jobs.each do |job| %>
-        <% if job.job_type == "Front-End" %>
+    <div id="accordion">
+      <h3><a href="#" onclick="searchMap('')">All Developer Jobs</a></h3>
+      <div>
+        <% @jobs.each do |job| %>
           <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
-      <% end %>
-    </div>
+      </div>
 
-    <h3><a href="#" onclick= "searchMap('Back-End')">Back-End</a></h3>
-    <div>
-      <% @jobs.each do |job| %>
-        <% if job.job_type == "Back-End" %>
-          <h6><a href="http://<%= job.job_link %>" target="blank"><%= job.job_title %></a></h6>
+      <h3><a href="#" onclick= "searchMap('Front-End')">Front-End</a></h3>
+      <div>
+        <% @jobs.each do |job| %>
+          <% if job.job_type == "Front-End" %>
+            <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
 
-    <h3><a href="#" onclick= "searchMap('Full-Stack')">Full-Stack</a></h3>
-    <div>
-      <% @jobs.each do |job| %>
-        <% if job.job_type == "Full-Stack" %>
-          <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
+      <h3><a href="#" onclick= "searchMap('Back-End')">Back-End</a></h3>
+      <div>
+        <% @jobs.each do |job| %>
+          <% if job.job_type == "Back-End" %>
+            <h6><a href="http://<%= job.job_link %>" target="blank"><%= job.job_title %></a></h6>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
 
-    <h3><a href="#" onclick= "jobSearchMap('Junior')">Junior Level</a></h3>
-    <div>
-      <% @jobs.each do |job| %>
-        <% if job.experience_level == "Junior" %>
-          <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
+      <h3><a href="#" onclick= "searchMap('Full-Stack')">Full-Stack</a></h3>
+      <div>
+        <% @jobs.each do |job| %>
+          <% if job.job_type == "Full-Stack" %>
+            <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
 
-    <h3><a href="#" onclick= "jobSearchMap('Senior')">Senior Level</a></h3>
-    <div>
-      <% @jobs.each do |job| %>
-        <% if job.experience_level == "Senior" %>
-          <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
+      <h3><a href="#" onclick= "jobSearchMap('Junior')">Junior Level</a></h3>
+      <div>
+        <% @jobs.each do |job| %>
+          <% if job.experience_level == "Junior" %>
+            <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
 
-    <h3><a href="#" onclick= "jobSearchMap('Internship')">Internship</a></h3>
-    <div>
-      <% @jobs.each do |job| %>
-        <% if job.experience_level == "Internship" %>
-          <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
+      <h3><a href="#" onclick= "jobSearchMap('Senior')">Senior Level</a></h3>
+      <div>
+        <% @jobs.each do |job| %>
+          <% if job.experience_level == "Senior" %>
+            <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
 
-    <h3><a href="#" onclick= "indeedJobs()">Indeed.com Jobs</a></h3>
-    
-  </div>
+      <h3><a href="#" onclick= "jobSearchMap('Internship')">Internship</a></h3>
+      <div>
+        <% @jobs.each do |job| %>
+          <% if job.experience_level == "Internship" %>
+            <h6><a href="http://<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
+          <% end %>
+        <% end %>
+      </div>
+
+      <h3><a href="#" onclick= "indeedJobs()">Indeed.com Jobs</a></h3>
+      
+    </div>
  
   <br>
   <div>
