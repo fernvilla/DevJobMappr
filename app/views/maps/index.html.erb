@@ -51,7 +51,7 @@
     $.ajax ({
       type:"GET", 
       dataType: "json",
-      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=web+developer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=25&limit=30&callback=?&fromage=30", 
+      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=web+developer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=25&limit=30&callback=?&fromage=30&highlight=0", 
       }).done(function(data){
         mapIndeed(data);
       });
@@ -62,7 +62,7 @@
     $.ajax ({
       type:"GET", 
       dataType: "json",
-      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=software+developer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=25&limit=30&callback=?&fromage=30", 
+      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=software+developer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=25&limit=30&callback=?&fromage=30&highlight=0", 
       }).done(function(data){
         mapIndeed(data);
       });
@@ -73,7 +73,7 @@
     $.ajax ({
       type:"GET", 
       dataType: "json",
-      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=developer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=25&limit=30&callback=?&fromage=30", 
+      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=developer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=25&limit=30&callback=?&fromage=30&highlight=0", 
       }).done(function(data){
         mapIndeed(data);
       });
@@ -84,7 +84,7 @@
     $.ajax ({
       type:"GET", 
       dataType: "json",
-      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=software-engineer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=25&limit=30&callback=?&fromage=30", 
+      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=software-engineer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=25&limit=30&callback=?&fromage=30&highlight=0", 
       }).done(function(data){
         mapIndeed(data);
       });
@@ -116,7 +116,11 @@
         });
         google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
           return function() {
-            infowindow.setContent(jobs_array[i].job_title + "<br/>" + jobs_array[i].company_name + "<br/>" +  '<a href="' + jobs_array[i].job_link + '" target="blank">Link to Job</a>');
+            infowindow.setContent("<div id='embed'><strong> TITLE: </strong> " + jobs_array[i].job_title + "<br><br>" + 
+              "<strong> COMPANY: </strong>" + jobs_array[i].company_name + "<br><br>" +  
+              "<strong> DESCRIPTION: </strong>" + jobs_array[i].job_description + "<br><br>" +
+              "<strong> LANGUAGE(S): </strong>" + jobs_array[i].primary_languages + "<br><br>" +
+              '<a href="' + jobs_array[i].job_link + '" target="blank">Link to Job</a></div>');
             infowindow.open(map, newMarker);
           }
         })(newMarker, i));   
@@ -140,7 +144,10 @@
         // console.log(jobs_array["results"][i]["latitude"],jobs_array["results"][i]["longitude"] );
         google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
           return function() {
-            infowindow.setContent(jobs_array["results"][i]["jobtitle"] + "<br>" + jobs_array["results"][i]["company"] + "<br>" + '<a href="' + jobs_array["results"][i]["url"] + '" target="blank">Link to Job</a>');
+            infowindow.setContent("<div id='embed'><strong> TITLE:</strong> " + jobs_array["results"][i]["jobtitle"] + "<br><br>" +
+                                  "<strong> COMPANY:</strong> " + jobs_array["results"][i]["company"] + "<br><br>" + 
+                                  "<strong> DESCRIPTION: </strong> " + jobs_array["results"][i]["snippet"] + "<br><br>" + 
+                                  '<a href="' + jobs_array["results"][i]["url"] + '" target="blank">Link to Job</a></div>');
             infowindow.open(map, newMarker);
           }
         })(newMarker, i));   

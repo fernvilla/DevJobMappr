@@ -13,7 +13,7 @@ class JobsController < ApplicationController
     @job.user = current_user
     if @job.save
       flash[:notice] = "Your Job Has Been Posted Successfully"
-      redirect_to root_path
+      redirect_to jobs_path
     else 
       flash[:error] =  "Error In Your Submission"
       render action: 'new'
