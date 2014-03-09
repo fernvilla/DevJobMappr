@@ -77,7 +77,7 @@
       }).done(function(data){
         mapIndeed(data);
       });
-  }
+    }
 
    function jobSearchMap(x) {
     $.ajax ({
@@ -122,10 +122,8 @@
       newMarker = new google.maps.Marker({
         position: new google.maps.LatLng(jobs_array["results"][i]["latitude"], jobs_array["results"][i]["longitude"]),
         map: map, 
-        // icon: '<%= asset_path 'indeed.png' %>',
         title: (jobs_array["results"][i]["jobtitle"]),
         });
-        // console.log(jobs_array["results"][i]["latitude"],jobs_array["results"][i]["longitude"] );
         google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
           return function() {
             infowindow.setContent(jobs_array["results"][i]["jobtitle"] + "<br>" + jobs_array["results"][i]["company"] + "<br>" + '<a href="' + jobs_array["results"][i]["url"] + '" target="blank">Link to Job</a>');
@@ -137,7 +135,6 @@
     };
   }
   
-
   //set map from array
   function setAllMap(map) {
     for (var i = 0; i < markers.length; i++) {
@@ -148,7 +145,6 @@
   //clear the map
   function clearIt() {
     setAllMap(null);
-    // markers = [];  
   }
 
 google.maps.event.addDomListener(window, 'page:change', initialize);
