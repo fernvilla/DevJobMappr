@@ -3,10 +3,16 @@ class Job < ActiveRecord::Base
 
 	validates :latitude, :longitude, numericality: {message: 'must be a number'}
 
-  
 	geocoded_by :company_address
-  before_validation :geocode 
+  after_validation :geocode 
 
   belongs_to :user
+
+  scope :front_end, -> { where(job_type: 'Front-End')}
+  scope :back_end, -> { where(job_type: 'Back-End')}
+  scope :full_stack, -> { where(job_type: 'Full-Stack')}
+  scope :junior, -> { where(experience_level: 'Junior')}
+  scope :senior, -> { where(experience_level: 'Senior')}
+  scope :internship, -> { where(experience_level: 'Internship')}
 
 end

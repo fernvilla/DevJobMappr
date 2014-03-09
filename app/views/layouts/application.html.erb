@@ -15,14 +15,14 @@
     <nav class="top-bar" data-topbar>
     <ul class="title-area">
       <li class="name">
-        <h1><a href="#">DevJobs.<span id="title">Map</span></a></h1>
+        <h1><a href="<%= root_path %>">DevJobs.<span id="title">Map</span></a></h1>
       </li>
       <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
     </ul>
 
     <section class="top-bar-section">
       <!-- Right Nav Section -->
-      <%= link_to_modal 'Submit A Job', new_job_path, :class=>"button tiny left job" %>
+      <%= link_to_modal 'Post a Job', new_job_path, :class=>"button tiny left job" %>
       <ul class="right">
         <li class="has-dropdown">
           <% if user_signed_in? %>
