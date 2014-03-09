@@ -5,6 +5,7 @@
   var map;
   var markers = [];
   var heatmap;
+  
 
   var stylesArray = [{"featureType": "water","elementType": "geometry","stylers": [{"color": "#a2daf2"}]},{"featureType": "landscape.man_made","elementType": "geometry","stylers": [{"color": "#f7f1df"}]},{"featureType": "landscape.natural","elementType": "geometry","stylers": [{"color": "#d0e3b4"}]},{"featureType": "landscape.natural.terrain","elementType": "geometry","stylers": [{"visibility": "off"}]},{"featureType": "poi.park","elementType": "geometry",
     "stylers": [{"color": "#bde6ab"}]},{"featureType": "poi","elementType": "labels","stylers": [{"visibility": "off"}]},
@@ -35,41 +36,19 @@
       map.setCenter(center);
     });
 
-  heatmap = new google.maps.visualization.HeatmapLayer({
-    data: markers
-  });
-
-  heatmap.setMap(map);
  }
 
-  function toggleHeatmap() {
-    heatmap.setMap(heatmap.getMap() ? null : map);
+  // create a function that takes in argument 'x' from the click of the button and call is made through the GET and then after it gets a response it runs on mapMaker on line 31.
+
+  function loadData() {
+    var heatMapData = [];
+    $.ajax({
+      url: "<%= map_jobs_search_path %>?category="+x,
+    })
   }
 
 
 
-  function changeGradient() {
-     var gradient = [
-    'rgba(0, 255, 255, 0)',
-    'rgba(0, 255, 255, 1)',
-    'rgba(0, 191, 255, 1)',
-    'rgba(0, 127, 255, 1)',
-    'rgba(0, 63, 255, 1)',
-    'rgba(0, 0, 255, 1)',
-    'rgba(0, 0, 223, 1)',
-    'rgba(0, 0, 191, 1)',
-    'rgba(0, 0, 159, 1)',
-    'rgba(0, 0, 127, 1)',
-    'rgba(63, 0, 91, 1)',
-    'rgba(127, 0, 63, 1)',
-    'rgba(191, 0, 31, 1)',
-    'rgba(255, 0, 0, 1)'
-    ]
-  heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
-  }
-
-
-  // create a function that takes in argument 'x' from the click of the button and call is made through the GET and then after it gets a response it runs on mapMaker on line 31. 
   function searchMap(x) {
     $.ajax ({
       type:"GET", 
@@ -146,6 +125,7 @@
       markers.push(newMarker);    
     };
   }
+  
 
   //set map from array
   function setAllMap(map) {
