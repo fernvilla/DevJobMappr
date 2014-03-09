@@ -1,21 +1,151 @@
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBB0sLGR2L5kT8sIFVdYDnLh-ohiw_ZzKk&sensor=true&libraries=visualization&sensor=true_or_false"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBB0sLGR2L5kT8sIFVdYDnLh-ohiw_ZzKk&sensor=true"></script>
 
 <script type="text/javascript">
   var geocoder;
   var map;
   var markers = [];
   var heatmap;
-  
-
-  var stylesArray = [{"featureType": "water","elementType": "geometry","stylers": [{"color": "#a2daf2"}]},{"featureType": "landscape.man_made","elementType": "geometry","stylers": [{"color": "#f7f1df"}]},{"featureType": "landscape.natural","elementType": "geometry","stylers": [{"color": "#d0e3b4"}]},{"featureType": "landscape.natural.terrain","elementType": "geometry","stylers": [{"visibility": "off"}]},{"featureType": "poi.park","elementType": "geometry",
-    "stylers": [{"color": "#bde6ab"}]},{"featureType": "poi","elementType": "labels","stylers": [{"visibility": "off"}]},
-    {"featureType": "poi.medical","elementType": "geometry","stylers": [{"color": "#fbd3da"}]},{"featureType": "poi.business","stylers": [{"visibility": "off"}]},{"featureType": "road","elementType": "geometry.stroke","stylers": [{
-    "visibility": "off"}]},{"featureType": "road","elementType": "labels","stylers": [{"visibility": "off"}]},{"featureType": "road.highway","elementType": "geometry.fill","stylers": [{"color": "#ffe15f"}]},{"featureType": "road.highway","elementType": "geometry.stroke","stylers": [{"color": "#efd151"}]},{"featureType": "road.arterial","elementType": "geometry.fill","stylers": [{"color": "#ffffff"}]},{"featureType": "road.local","elementType": "geometry.fill","stylers": [{"color": "black"}]},{"featureType": "transit.station.airport","elementType": "geometry.fill","stylers": [{"color": "#cfb2db"}]}]
+  var stylesArray = [
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#a2daf2"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#f7f1df"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#d0e3b4"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural.terrain",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#bde6ab"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.medical",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#fbd3da"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.business",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffe15f"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#efd151"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "black"
+            }
+        ]
+    },
+    {
+        "featureType": "transit.station.airport",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#cfb2db"
+            }
+        ]
+    }
+  ]
              
   // var last_marker;
   function initialize() {
     geocoder = new google.maps.Geocoder();
-    var myLatLng = new google.maps.LatLng(34.052197, -118.24176);
+    var myLatLng = new google.maps.LatLng(34.002197, -118.24176);
 
     var mapOptions = {
       zoom: 11,
@@ -35,24 +165,21 @@
     google.maps.event.addDomListener(window, 'resize', function() {
       map.setCenter(center);
     });
-
  }
 
-  // create a function that takes in argument 'x' from the click of the button and call is made through the GET and then after it gets a response it runs on mapMaker on line 31.
-
-  function loadData() {
+ function loadData() {
     var heatMapData = [];
     var i, newMarker;
       for (i=0; i < jobs_array.length; i++) {
         newMarker = new google.maps.Marker({
         position: new google.maps.LatLng(jobs_array[i].latitude, jobs_array[i].longitude),
-        map: map, 
+        map: map,
         });
-        google.maps.event.addListener(newMarker, 'click', (newMarker, i));   
-        heatMapData.push(newMarker);    
+        google.maps.event.addListener(newMarker, 'click', (newMarker, i));  
+        heatMapData.push(newMarker);   
       }
     var heatmap = google.maps.visualization.HeatmapLayer({
-      data: heatMapData, 
+      data: heatMapData,
       map: map
     });
   }
@@ -61,6 +188,7 @@
     heatmap.setMap(heatmap.getMap() ? null : map);
   }
 
+  // create a function that takes in argument 'x' from the click of the button and call is made through the GET and then after it gets a response it runs on mapMaker on line 71. 
   function searchMap(x) {
     $.ajax ({
       type:"GET", 
@@ -75,15 +203,49 @@
     $.ajax ({
       type:"GET", 
       dataType: "json",
-      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=web+developer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=30&limit=30&callback=?&fromage=30", 
+      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=web+developer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=25&limit=30&callback=?&fromage=30&highlight=0", 
       }).done(function(data){
         mapIndeed(data);
       });
+      indeedJobs2();
     }
+
+  function indeedJobs2() {
+    $.ajax ({
+      type:"GET", 
+      dataType: "json",
+      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=software+developer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=25&limit=30&callback=?&fromage=30&highlight=0", 
+      }).done(function(data){
+        mapIndeed(data);
+      });
+      indeedJobs3();
+  }
+
+  function indeedJobs3() {
+    $.ajax ({
+      type:"GET", 
+      dataType: "json",
+      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=developer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=25&limit=30&callback=?&fromage=30&highlight=0", 
+      }).done(function(data){
+        mapIndeed(data);
+      });
+      indeedJobs4();
+  }
+
+  function indeedJobs4() {
+    $.ajax ({
+      type:"GET", 
+      dataType: "json",
+      url: "http://api.indeed.com/ads/apisearch?publisher=9335086191163405&q=software-engineer&l=los+angeles%2C+ca&v=2&format=json&latlong=1&radius=25&limit=30&callback=?&fromage=30&highlight=0", 
+      }).done(function(data){
+        mapIndeed(data);
+      });
+  }
 
    function jobSearchMap(x) {
     $.ajax ({
       type:"GET", 
+      dataType: "json",
       url: "<%= map_experience_search_path %>?category="+x,
     }).done(function(msg){
       mapMaker(msg);
@@ -106,7 +268,11 @@
         });
         google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
           return function() {
-            infowindow.setContent(jobs_array[i].job_title + "<br/>" + jobs_array[i].company_name + "<br/>" +  '<a href="' + jobs_array[i].job_link + '" target="blank">Link to Job</a>');
+            infowindow.setContent("<div id='embed'><strong> TITLE: </strong> " + jobs_array[i].job_title + "<br><br>" + 
+              "<strong> COMPANY: </strong>" + jobs_array[i].company_name + "<br><br>" +  
+              "<strong> DESCRIPTION: </strong>" + jobs_array[i].job_description + "<br><br>" +
+              "<strong> LANGUAGE(S): </strong>" + jobs_array[i].primary_languages + "<br><br>" +
+              '<a href="' + jobs_array[i].job_link + '" target="blank">Link to Job</a></div>');
             infowindow.open(map, newMarker);
           }
         })(newMarker, i));   
@@ -124,11 +290,16 @@
       newMarker = new google.maps.Marker({
         position: new google.maps.LatLng(jobs_array["results"][i]["latitude"], jobs_array["results"][i]["longitude"]),
         map: map, 
+        // icon: '<%= asset_path 'indeed.png' %>',
         title: (jobs_array["results"][i]["jobtitle"]),
         });
+        // console.log(jobs_array["results"][i]["latitude"],jobs_array["results"][i]["longitude"] );
         google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
           return function() {
-            infowindow.setContent(jobs_array["results"][i]["jobtitle"] + "<br>" + jobs_array["results"][i]["company"] + "<br>" + '<a href="' + jobs_array["results"][i]["url"] + '" target="blank">Link to Job</a>');
+            infowindow.setContent("<div id='embed'><strong> TITLE:</strong> " + jobs_array["results"][i]["jobtitle"] + "<br><br>" +
+                                  "<strong> COMPANY:</strong> " + jobs_array["results"][i]["company"] + "<br><br>" + 
+                                  "<strong> DESCRIPTION: </strong> " + jobs_array["results"][i]["snippet"] + "<br><br>" + 
+                                  '<a href="' + jobs_array["results"][i]["url"] + '" target="blank">Link to Job</a></div>');
             infowindow.open(map, newMarker);
           }
         })(newMarker, i));   
@@ -136,7 +307,7 @@
       markers.push(newMarker);    
     };
   }
-  
+
   //set map from array
   function setAllMap(map) {
     for (var i = 0; i < markers.length; i++) {
@@ -147,6 +318,7 @@
   //clear the map
   function clearIt() {
     setAllMap(null);
+    // markers = [];  
   }
 
 google.maps.event.addDomListener(window, 'page:change', initialize);
@@ -163,86 +335,66 @@ google.maps.event.addDomListener(window, 'page:change', initialize);
 </script>
 
 <div id="page-wrapper">
-	<div id="map-wrapper">
-	 <div id="map-canvas"> 
-    
-   </div>
-	 <div id= "sidebar">
-
+  <div id="map-wrapper">
+   <div id="map-canvas"> </div>
+   <div id= "sidebar">
     <div id="accordion">
-      <h3><a href="#" onclick="searchMap('')">All Developer Jobs <span class="count">(<%= Job.count %>)</span></a></h3>
+      <h3><a href="#" onclick="searchMap('')">All Developer Jobs (<%= Job.count %>)</a></h3>
       <div>
         <% @jobs.each do |job| %>
           <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "searchMap('Front-End')">Front-End <span class="count">(<%= Job.front_end.count %>)</span></a></h3>
+      <h3><a href="#" onclick= "searchMap('Front-End')">Front-End (<%= Job.front_end.count %>)</a></h3>
       <div>
-        <% @jobs.each do |job| %>
-          <% if job.job_type == "Front-End" %>
-            <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
-          <% end %>
+        <% @jobs.front_end.each do |job| %>
+          <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-
-      <h3><a href="#" onclick= "searchMap('Back-End')">Back-End <span class="count">(<%= Job.back_end.count %>)</span></a></h3>
+      <h3><a href="#" onclick= "searchMap('Back-End')">Back-End (<%= Job.back_end.count %>)</a></h3>
       <div>
-        <% @jobs.each do |job| %>
-          <% if job.job_type == "Back-End" %>
-            <h6><a href="<%= job.job_link %>" target="blank"><%= job.job_title %></a></h6>
-          <% end %>
+        <% @jobs.back_end.each do |job| %>
+          <h6><a href="<%= job.job_link %>" target="blank"><%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "searchMap('Full-Stack')">Full-Stack <span class="count">(<%= Job.full_stack.count %>)</span></a></h3>
+      <h3><a href="#" onclick= "searchMap('Full-Stack')">Full-Stack (<%= Job.full_stack.count %>)</a></h3>
       <div>
-        <% @jobs.each do |job| %>
-          <% if job.job_type == "Full-Stack" %>
-            <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
-          <% end %>
+        <% @jobs.full_stack.each do |job| %>
+          <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "jobSearchMap('Junior')">Junior Level <span class="count">(<%= Job.junior.count %>)</span></a></h3>
+      <h3><a href="#" onclick= "jobSearchMap('Junior')">Junior Level (<%= Job.junior.count %>)</a></h3>
       <div>
-        <% @jobs.each do |job| %>
-          <% if job.experience_level == "Junior" %>
-            <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
-          <% end %>
+        <% @jobs.junior.each do |job| %>
+          <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "jobSearchMap('Senior')">Senior Level <span class="count">(<%= Job.senior.count %>)</span></a></h3>
+      <h3><a href="#" onclick= "jobSearchMap('Senior')">Senior Level (<%= Job.senior.count %>)</a></h3>
       <div>
-        <% @jobs.each do |job| %>
-          <% if job.experience_level == "Senior" %>
-            <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
-          <% end %>
+        <% @jobs.senior.each do |job| %>
+          <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "jobSearchMap('Internship')">Internship <span class="count">(<%= Job.internship.count %>)</span></a></h3>
+      <h3><a href="#" onclick= "jobSearchMap('Internship')">Internship (<%= Job.internship.count %>)</a></h3>
       <div>
-        <% @jobs.each do |job| %>
-          <% if job.experience_level == "Internship" %>
-            <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
-          <% end %>
+        <% @jobs.internship.each do |job| %>
+          <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "indeedJobs()">Indeed.com Jobs</a></h3>
-      
+      <h3><a href="#" onclick= "indeedJobs()">Indeed.com Jobs</a></h3>  
     </div>
- 
-  <br>
-  <div>
-    <button onclick="toggleHeatmap()"> Toggle HeatMap</button>
-    <input type="button" class="button tiny" id="clear" onclick= "clearIt()" value="Clear Map" />
-  </div>
-  <p id="credits">Created at General Assembly Los Angeles by Daniel Iwao, Fernando Villasenor and Rachel Bailin.</p>   
-
+    <div id="clear-btn">
+      <button onclick="toggleHeatmap()"> Toggle HeatMap</button>
+      <input type="button" class="button tiny" id="clear" onclick= "clearIt()" value="Clear Map" />
+    </div>
+    <p id="credits">Created at General Assembly LA by Daniel Iwao, Fernando Villasenor and Rachel Bailin.</p>
    </div>
-	</div>
+  </div>
 </div>
