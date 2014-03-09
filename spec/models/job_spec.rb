@@ -11,12 +11,12 @@ describe Job do
 			secondary_languages: 'Html',
 			job_link: 'www.job.com',
 			company_name: 'Danon',
-			company_address: '1504 2nd st, Santa Monica, CA 90401',
+			company_address: 'New York, NY',
 			company_website: 'www.danon.com',
 			industry: 'Party industry',
 			company_size: 100,
-			latitude:  34.0134672,
-			longitude: -118.4954042
+			latitude: 40.7143528,
+			longitude: -74.0059731
 		}
 	end 
 
@@ -141,7 +141,7 @@ describe Job do
 
 		context 'when latitude contains letters' do
 			it "is not valid" do
-				job = Job.new(@valid_attributes.merge(latitude: 3.3))
+				job = Job.new(@valid_attributes.merge(latitude: 40.7143528))
 				expect(job).to be_valid
 
 				jobless = Job.new(@valid_attributes.merge(latitude: "number"))
@@ -152,7 +152,7 @@ describe Job do
 
 		context 'when longitude contains letters' do
 			it "is not valid" do
-				job = Job.new(@valid_attributes.merge(longitude: 3.4))
+				job = Job.new(@valid_attributes.merge(longitude: -74.0059731))
 				expect(job).to be_valid
 
 				jobless = Job.new(@valid_attributes.merge(longitude: "number"))
@@ -171,5 +171,68 @@ describe Job do
 		# 		expect(jobless.errors[:company_size]).to include 'must be a number'
 		# 	end
 		# end
+  end
+
+   describe 'scopes' do
+  	describe ':front_end' do
+  	  it 'return only the jobs marked as Front-End' do
+  	  	Job.create(@valid_attributes.merge(job_type: 'Front-End'))
+  	  	jobless = Job.create(@valid_attributes.merge(job_type: 'Back-end'))
+
+  	  	expect(Job.front_end).not_to include jobless
+  	  	expect(Job.front_end.count).to eql 1
+  	  end
+  	end
+
+  	describe ':back_end' do
+  	  it 'returns only the jobs marked as Back-End' do
+  	  	Job.create(@valid_attributes.merge(job_type: 'Back-End'))
+  	  	jobless = Job.create(@valid_attributes.merge(job_type: 'Front-end'))
+
+  	  	expect(Job.back_end).not_to include jobless
+  	  	expect(Job.back_end.count).to eql 1
+  	  end
+  	end
+
+  	describe ':full_stack' do
+  	  it 'returns only the jobs marked as Full-Stack' do
+  	  	Job.create(@valid_attributes.merge(job_type: 'Full-Stack'))
+  	  	jobless = Job.create(@valid_attributes.merge(job_type: 'Front-end'))
+
+  	  	expect(Job.full_stack).not_to include jobless
+  	  	expect(Job.full_stack.count).to eql 1
+  	  end
+  	end
+
+  	describe ':junior' do
+  	  it 'returns only the jobs marked as Junior Level' do
+  	  	Job.create(@valid_attributes.merge(experience_level: 'Junior'))
+  	  	jobless = Job.create(@valid_attributes.merge(experience_level: 'Senior'))
+
+  	  	expect(Job.junior).not_to include jobless
+  	  	expect(Job.junior.count).to eql 1
+  	  end
+  	end
+
+  	describe ':senior' do
+  	  it 'returns only the jobs marked as Senior Level' do
+  	  	Job.create(@valid_attributes.merge(experience_level: 'Senior'))
+  	  	jobless = Job.create(@valid_attributes.merge(experience_level: 'Junior'))
+
+  	  	expect(Job.senior).not_to include jobless
+  	  	expect(Job.senior.count).to eql 1
+  	  end
+  	end
+
+  	describe ':internship' do
+  	  it 'returns only the jobs marked as Internships' do
+  	  	Job.create(@valid_attributes.merge(experience_level: 'Internship'))
+  	  	jobless = Job.create(@valid_attributes.merge(experience_level: 'Junior'))
+
+  	  	expect(Job.internship).not_to include jobless
+  	  	expect(Job.internship.count).to eql 1
+  	  end
+  	end
+  	
   end
 end

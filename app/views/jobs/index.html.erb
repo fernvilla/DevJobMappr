@@ -1,4 +1,4 @@
-<h3 id="dash">Dashboard</h3>
+<h3 id="dash">Job Dashboard</h3>
 <h5>You have a total of <%= current_user.jobs.length %> job(s) currently posted</h5>
 
 <p class="notice"><%= notice %></p>
@@ -7,27 +7,31 @@
 <table>
   <thead>
     <tr>
-      <th width="200">Job Title</th>
+      <th>Job Title</th>
       <th>Job Description</th>
-      <th width="120">Job Type</th>
+      <th>Language(s)</th>
+      <th>Job Type</th>
       <th>Experience</th>
-      <th width="120">Date Created</th>
+      <th>Date Created</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
   	<% current_user.jobs.each do |job|%>
 	    <tr>
-	      <td><%= job.job_title %></td>
-	      <td><%= job.job_description %></td>
-	      <td><%= job.job_type %></td>
-	      <td><%= job.experience_level %></td>
-	      <td><%= job.created_at.strftime("%m/%d/%Y") %></td>
-	      <td><%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' } %>/<%= link_to_modal "Edit", edit_job_path(job)%></td>
+	      <td width="150"><%= job.job_title %></td>
+	      <td width="400"><%= job.job_description %></td>
+        <td width="170"><%= job.primary_languages %></td>
+	      <td width="120"><%= job.job_type %></td>
+	      <td width="120"><%= job.experience_level %></td>
+	      <td width="100"><%= job.created_at.strftime("%m/%d/%Y") %></td>
+	      <td width="50"><%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' } %>/<%= link_to_modal "Edit", edit_job_path(job)%></td>
 	    </tr>
     <% end %>
   </tbody>
 </table>
+<br>
+<%= link_to_modal 'Post a Job', new_job_path, :class=>"button tiny" %>
 <br>
 <%= link_to "Back to main", root_path %>
 <br>

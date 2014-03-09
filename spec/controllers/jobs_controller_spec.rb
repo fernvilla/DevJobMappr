@@ -44,7 +44,7 @@ describe JobsController do
       post 'create', { job: { job_title: 'lawyer' } }
 
       expect(flash[:notice]).to eq "Your Job Has Been Posted Successfully"
-      expect(response).to redirect_to root_path
+      expect(response).to redirect_to jobs_path
       expect(assigns(:job).job_title).to eq 'lawyer'
       expect(assigns(:job)).to be_persisted
     end
