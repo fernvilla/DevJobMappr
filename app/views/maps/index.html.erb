@@ -319,49 +319,49 @@ google.maps.event.addDomListener(window, 'page:change', initialize);
 	 <div id="map-canvas"> </div>
 	 <div id= "sidebar">
     <div id="accordion">
-      <h3><a href="#" onclick="searchMap('')">All Developer Jobs (<%= Job.count %>)</a></h3>
+      <h3><a href="#" onclick="searchMap('')">All Developer Jobs <span class="count">(<%= Job.count %>)</span></a></h3>
       <div>
         <% @jobs.each do |job| %>
           <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "searchMap('Front-End')">Front-End (<%= Job.front_end.count %>)</a></h3>
+      <h3><a href="#" onclick= "searchMap('Front-End')">Front-End <span class="count">(<%= Job.front_end.count %>)</span></a></h3>
       <div>
         <% @jobs.front_end.each do |job| %>
           <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "searchMap('Back-End')">Back-End (<%= Job.back_end.count %>)</a></h3>
+      <h3><a href="#" onclick= "searchMap('Back-End')">Back-End <span class="count">(<%= Job.back_end.count %>)</span></a></h3>
       <div>
         <% @jobs.back_end.each do |job| %>
           <h6><a href="<%= job.job_link %>" target="blank"><%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "searchMap('Full-Stack')">Full-Stack (<%= Job.full_stack.count %>)</a></h3>
+      <h3><a href="#" onclick= "searchMap('Full-Stack')">Full-Stack <span class="count">(<%= Job.full_stack.count %>)</span></a></h3>
       <div>
         <% @jobs.full_stack.each do |job| %>
           <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "jobSearchMap('Junior')">Junior Level (<%= Job.junior.count %>)</a></h3>
+      <h3><a href="#" onclick= "jobSearchMap('Junior')">Junior Level <span class="count">(<%= Job.junior.count %>)</span></a></h3>
       <div>
         <% @jobs.junior.each do |job| %>
           <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "jobSearchMap('Senior')">Senior Level (<%= Job.senior.count %>)</a></h3>
+      <h3><a href="#" onclick= "jobSearchMap('Senior')">Senior Level <span class="count">(<%= Job.senior.count %>)</span></a></h3>
       <div>
         <% @jobs.senior.each do |job| %>
           <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "jobSearchMap('Internship')">Internship (<%= Job.internship.count %>)</a></h3>
+      <h3><a href="#" onclick= "jobSearchMap('Internship')">Internship <span class="count">(<%= Job.internship.count %>)</span></a></h3>
       <div>
         <% @jobs.internship.each do |job| %>
           <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
