@@ -174,14 +174,14 @@ google.maps.event.addDomListener(window, 'page:change', initialize);
 	 <div id= "sidebar">
 
     <div id="accordion">
-      <h3><a href="#" onclick="searchMap('')">All Developer Jobs</a></h3>
+      <h3><a href="#" onclick="searchMap('')">All Developer Jobs <span class="count">(<%= Job.count %>)</span></a></h3>
       <div>
         <% @jobs.each do |job| %>
           <h6><a href="<%= job.job_link %>" target="blank"> <%= job.job_title %></a></h6>
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "searchMap('Front-End')">Front-End</a></h3>
+      <h3><a href="#" onclick= "searchMap('Front-End')">Front-End <span class="count">(<%= Job.front_end.count %>)</span></a></h3>
       <div>
         <% @jobs.each do |job| %>
           <% if job.job_type == "Front-End" %>
@@ -190,7 +190,8 @@ google.maps.event.addDomListener(window, 'page:change', initialize);
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "searchMap('Back-End')">Back-End</a></h3>
+
+      <h3><a href="#" onclick= "searchMap('Back-End')">Back-End <span class="count">(<%= Job.back_end.count %>)</span></a></h3>
       <div>
         <% @jobs.each do |job| %>
           <% if job.job_type == "Back-End" %>
@@ -199,7 +200,7 @@ google.maps.event.addDomListener(window, 'page:change', initialize);
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "searchMap('Full-Stack')">Full-Stack</a></h3>
+      <h3><a href="#" onclick= "searchMap('Full-Stack')">Full-Stack <span class="count">(<%= Job.full_stack.count %>)</span></a></h3>
       <div>
         <% @jobs.each do |job| %>
           <% if job.job_type == "Full-Stack" %>
@@ -208,7 +209,7 @@ google.maps.event.addDomListener(window, 'page:change', initialize);
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "jobSearchMap('Junior')">Junior Level</a></h3>
+      <h3><a href="#" onclick= "jobSearchMap('Junior')">Junior Level <span class="count">(<%= Job.junior.count %>)</span></a></h3>
       <div>
         <% @jobs.each do |job| %>
           <% if job.experience_level == "Junior" %>
@@ -217,7 +218,7 @@ google.maps.event.addDomListener(window, 'page:change', initialize);
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "jobSearchMap('Senior')">Senior Level</a></h3>
+      <h3><a href="#" onclick= "jobSearchMap('Senior')">Senior Level <span class="count">(<%= Job.senior.count %>)</span></a></h3>
       <div>
         <% @jobs.each do |job| %>
           <% if job.experience_level == "Senior" %>
@@ -226,7 +227,7 @@ google.maps.event.addDomListener(window, 'page:change', initialize);
         <% end %>
       </div>
 
-      <h3><a href="#" onclick= "jobSearchMap('Internship')">Internship</a></h3>
+      <h3><a href="#" onclick= "jobSearchMap('Internship')">Internship <span class="count">(<%= Job.internship.count %>)</span></a></h3>
       <div>
         <% @jobs.each do |job| %>
           <% if job.experience_level == "Internship" %>

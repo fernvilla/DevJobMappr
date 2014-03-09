@@ -12,7 +12,7 @@ html, body {
 }
 
 #page-wrapper {
-     height: 93%;
+     height: 94%;
 }
 
 #map-wrapper {
@@ -31,12 +31,7 @@ html, body {
      height: 100%;
      background-color: #666666;
      width: 18%;
-}
-
-.dashboard {
-     width: 100px;
-     height: 50px;
-     margin-right: 25px;
+     font-family: 'Roboto Condensed', sans-serif;
 }
 
 #map-canvas img {
@@ -47,38 +42,25 @@ html, body {
      font-size: 28px;
      font-weight: bold;
      margin-left: 30px;
-     margin-top: 1px;
      text-shadow: 1px 1px 1px #000;
+     font-family: 'Roboto Condensed', sans-serif;
 }
 
 #title {
      color: #ff0000;
-     margin-top: 1px;
 }
 
 .job {
      margin-left: 20px;
-     margin-top: 3px;
      background-color: #385B9F;
-}
-
-.top-bar {
-     height: 7%;
-     font-family: 'Cambo', serif;
-     border-bottom: 1px solid #000;
+     height: 20%;
 }
 
 .top-bar-section .right{
-     font-size: 15px;
+     font-size: 14px;
      color: #FFF;
      padding-right: 30px;
-     margin-top: 1px;
-     font-family: 'Roboto Condensed', sans-serif;
 }
-
-/*.top-bar, .right,{
-     background-color: #000;
-}*/
 
 .button {
      background-color: #999999;
@@ -97,7 +79,7 @@ html, body {
 #accordion {
      padding: 0 10px;
      margin: 0 auto;
-     margin-top: 15px;
+     margin-top: 10px;
      text-align: left;
      color: #000;
      max-width: 100%;
@@ -114,7 +96,7 @@ html, body {
 
 #accordion a {
      font-size: 14px;
-     font-family: 'Roboto Condensed', sans-serif;
+     color: #000;
 }
 
 #clear-btn {
