@@ -1,4 +1,5 @@
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBB0sLGR2L5kT8sIFVdYDnLh-ohiw_ZzKk&sensor=true"></script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBB0sLGR2L5kT8sIFVdYDnLh-ohiw_ZzKk&sensor=true&libraries=visualization"></script>
 
 <script type="text/javascript">
   var geocoder;
@@ -151,9 +152,9 @@
       zoom: 11,
       center: myLatLng,
       styles: stylesArray,
-  }
+    }
 
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); 
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); 
   
   var center;
     function calculateCenter() {
@@ -167,7 +168,7 @@
     });
  }
 
- function loadData() {
+ function loadData(jobs_array) {
     var heatMapData = [];
     var i, newMarker;
       for (i=0; i < jobs_array.length; i++) {
@@ -178,13 +179,15 @@
         google.maps.event.addListener(newMarker, 'click', (newMarker, i));  
         heatMapData.push(newMarker);   
       }
-    var heatmap = google.maps.visualization.HeatmapLayer({
+      console.log(heatMapData);
+      heatmap = new google.maps.visualization.HeatmapLayer({
       data: heatMapData,
       map: map
     });
-  }
+      
+  } 
 
-  function toggleHeatmap() {
+ function toggleHeatmap() {
     heatmap.setMap(heatmap.getMap() ? null : map);
   }
 
@@ -254,6 +257,7 @@
 
   //this is a function mapMaker that takes the JSON and then plots the map. 
   function mapMaker(jobs_array){
+    loadData (jobs_array);
     console.log(jobs_array);
     //for loop to place each marker with stored information. 
     var i, newMarker;
@@ -264,7 +268,6 @@
         position: new google.maps.LatLng(jobs_array[i].latitude, jobs_array[i].longitude),
         map: map, 
         title: (jobs_array[i].job_title),
-        // animation: google.maps.Animation.DROP
         });
         google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
           return function() {
@@ -282,6 +285,7 @@
   }
 
   function mapIndeed(jobs_array){
+    loadData (jobs_array);
     //for loop to place each marker with stored information. 
     var i, newMarker;
     var infowindow = new google.maps.InfoWindow();
