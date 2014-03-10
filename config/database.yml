@@ -53,5 +53,5 @@ production:
   encoding: unicode
   database: DevJobMappr_production
   pool: 5
-  username: DevJobMappr
+  username: 
   password:
