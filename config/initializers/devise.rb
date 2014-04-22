@@ -233,7 +233,7 @@ Devise.setup do |config|
   config.omniauth :linkedin, "75rv26520ofdeq", "c7hG6qOpHeBtsKDc"
 
   require 'omniauth-twitter'
-  config.omniauth :twitter, "iqAy3ijMvrMDKFBwdS3Vg", "yJhzQBGiWFdvZPxpp2mtnRRIzt1jeU6unK95Ps1ramY"
+  config.omniauth :twitter, "sBYh3P3RP3tFFhfRoBK3VdIcF", "mILKN8cSYsBfMqURfed09bKIa5oW4DzlewRiZs4Gf1iLasDD6K"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
